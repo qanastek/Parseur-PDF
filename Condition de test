@@ -7,4 +7,4 @@ keep it simple
 
 on vote et on choisit
 
-pdftotext -layout -enc UTF-8  "Torres-Moreno_2012_Artex is another text summarizer.pdf" "nom du fichier a convertir.txt"
+pdftotext -layout -enc UTF-8  "Torres-Moreno_2012_Artex is another text summarizer.pdf" "fichierTest.txt"
