@@ -1,0 +1,9 @@
+1)Mesurer avec time le temps d'execution
+2)Faire un programme avec boucles imbriquées de 0à 10000
+3)faire l’ouverture et lecture de gros fichiers (le meme pour tout le monde) remplis de random
+
+keep it simple 
+
+on vote et on choisit
+
+pdftotext -layout -enc UTF-8  "Torres-Moreno_2012_Artex is another text summarizer.pdf" "nom du fichier a convertir.txt"
