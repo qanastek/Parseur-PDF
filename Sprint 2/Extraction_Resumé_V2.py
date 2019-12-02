@@ -8,6 +8,38 @@ import sys
 if len(sys.argv) != 2:
 	sys.exit("Erreur argument manquant !")
 
+def getResume(data):
+    	
+	if re.search("Abstract",data):
+			splitted = data.split("Abstract")[1]
+	elif re.search("ABSTRACT",data):
+		splitted = data.split("ABSTRACT")[1]
+
+	# Get first paragraphe
+	splitted2 = splitted.split("\n\n")[0]
+
+	# Cut after Keywords
+	splitted2 = splitted2.split("Keywords")[0]
+
+	# Replace jump line by spaces
+	splitted2 = splitted2.replace("\n"," ")
+
+	# Delete characters which aren't Alpha and Space
+	splitted2 = re.sub('[^a-zA-Z ]+', '', splitted2[:5]) + splitted2[5:]
+
+	return splitted2
+
+def getTitle(data):
+    	
+	return data.split('\n')[0]
+
+	# for line in data.split('\n'):
+		
+	# 	if not bool(re.search(r'\d', line)):
+    			
+	# 		return line
+
+
 rm = "rm *.txt"
 os.system(rm)
 
@@ -50,29 +82,17 @@ for item in splitted[0:-1]:
 
 		data = f.read()
 
-		if re.search("Abstract",data):
-			splitted = data.split("Abstract")[1]
-		elif re.search("ABSTRACT",data):
-			splitted = data.split("ABSTRACT")[1]
-
-		# Get first paragraphe
-		splitted2 = splitted.split("\n\n")[0]
-
-		# Cut after Keywords
-		splitted2 = splitted2.split("Keywords")[0]
-
-		# Replace jump line by spaces
-		splitted2 = splitted2.replace("\n"," ")
-
-		# Delete characters which aren't Alpha and Space
-		splitted2 = re.sub('[^a-zA-Z ]+', '', splitted2[:5]) + splitted2[5:]
+		title = getTitle(data)
+		resume = getResume(data)
 
 		# Write in the file
 		with open("resultat.txt", 'a') as res:
 			res.write("\n")
-			res.write(name)
+			res.write("File name: " + name)
 			res.write("\n\n")
-			res.write(splitted2)
+			res.write("Title: " + title)
+			res.write("\n\n")
+			res.write("Résumé: " + resume)
 			res.write("\n\n-------------------------------------------------------------\n")
 		res.close()
 
