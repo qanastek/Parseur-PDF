@@ -14,13 +14,22 @@ Aller à la racine du repertoire où ce trouve les différents fichiers .PDF et 
 user@user: python ../Sprint\ 2/ConvertionAll.py
 ```
 
-### Extraction des titres:
+### Extraction des nom des fichiers, titres et résumés:
 
+Aller à la racine du repertoire où ce trouve les différents fichiers .PDF et lancer le programme à l'aide de:
 
-### Extraction des résumés:
+TXT Output:
 
+```console
+user@user: python ../Sprint\ 2/Extraction_Resumé_V2.py -t
+```
 
-### Extraction du nom des fichiers:
+XML Output:
+
+```console
+user@user: python ../Sprint\ 2/Extraction_Resumé_V2.py -x
+```
+
 
 
 ## Sprint 3:
