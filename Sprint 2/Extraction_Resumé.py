@@ -16,7 +16,7 @@ for item in splitted[0:len(splitted)-1]:
 	
 	name = item.split(".")[0]
 
-	rst = "pdftotext -layout -enc UTF-8 "+"'"+item+"'"+" "+"'"+name+".txt"+"'"
+	rst = "pdftotext -enc UTF-8 "+"'"+item+"'"+" "+"'"+name+".txt"+"'"
 	os.system(rst)
 
 	with open(name + ".txt", 'r') as f:
@@ -33,12 +33,7 @@ for item in splitted[0:len(splitted)-1]:
 			res.write("\n")
 			res.write(splitted2)
 			res.write("\n")
-			res.write("\n")
-			res.write("\n")
-			res.write("\n")
-			res.write("\n")
-			res.write("\n")
-			res.write("\n")
+			res.write("---------------------------------------------------------------------")
 			res.write("\n")
 		res.close()
 

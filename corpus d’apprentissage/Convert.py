@@ -11,5 +11,5 @@ for item in splitted[0:len(splitted)-1]:
 	
 	string=item.split(".")[0]
 
-	rst="pdftotext -layout -enc UTF-8 "+"'"+item+"'"+" "+"'"+string+".txt"+"'"
-	os.system(rst)
+	rst="pdftotext -enc UTF-8 "+"'"+item+"'"+" "+"'"+string+".txt"+"'"
+	print(rst)
