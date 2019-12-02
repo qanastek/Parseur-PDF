@@ -5,6 +5,8 @@ import re
 import os
 import sys
 
+from xml.etree.ElementTree import Element, SubElement, Comment, tostring
+
 if len(sys.argv) != 2:
 	sys.exit("Erreur argument manquant !")
 
@@ -70,30 +72,69 @@ for name in splitted[0:-1]:
 	# print(rst)
 	os.system(rst)
 
-os.system('touch resultat.txt')
-
 # Summarize
 for item in splitted[0:-1]:
 	
 	name = item.split(".")[0]
 
+	txtFile = name + "." + out
+	print(txtFile)
+
 	# For each converted PDF
-	with open(name + ".txt", 'r') as f:
+	with open(txtFile, 'r') as f:
 
-		data = f.read()
+		data = f.read().decode('utf-8')
 
+		fileName = name
 		title = getTitle(data)
+		author = "Unknown"
 		resume = getResume(data)
+		biblio = "Unknown"
 
-		# Write in the file
-		with open("resultat.txt", 'a') as res:
-			res.write("\n")
-			res.write("File name: " + name)
-			res.write("\n\n")
-			res.write("Title: " + title)
-			res.write("\n\n")
-			res.write("Résumé: " + resume)
-			res.write("\n\n-------------------------------------------------------------\n")
-		res.close()
+		if out == "txt":
+    			
+			os.system('touch resultat.txt')
+
+			# Write in the file
+			with open("resultat.txt", 'a') as res:
+				res.write("\n")
+				res.write("File name: " + fileName)
+				res.write("\n\n")
+				res.write("Title: " + title)
+				res.write("\n\n")
+				res.write("Résumé: " + resume)
+				res.write("\n\n-------------------------------------------------------------\n")
+			res.close()
+
+		elif out == "xml":
+    			
+			root = Element('article')
+
+			preamble = SubElement(root, 'preamble')
+			preamble.text = fileName
+
+			titre = SubElement(root, 'titre')
+			titre.text = title
+
+			auteur = SubElement(root, 'auteur')
+			auteur.text = author
+
+			abstract = SubElement(root, 'abstract')
+			abstract.text = resume
+
+			biblio = SubElement(root, 'biblio')
+			biblio.text = biblio
+
+			xml = tostring(root)
+
+			# print(xml)
+
+			os.system('touch resultat.xml')
+
+			with open("resultat.xml", 'a') as res:
+				res.write(xml)
+				res.write("\n")
+			res.close()
+
 
 	f.close()
