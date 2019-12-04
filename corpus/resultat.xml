@@ -1,18 +1,4 @@
-<article>
-<preamble>
-Alexandrov_2015_A_Modified_Tripartite_Model_for_Document_Representation_in_Internet_Sociology
-</preamble>
-<titre>
-A Modified Tripartite Model for Document
-</titre>
-<auteur>
-[u'Representation in Internet Sociology']
-</auteur>
-<abstract>
- Seven years ago Peter Mika (Yahoo! Research) proposed a tripartite model of actors, concepts and instances for document representation in the study of social networks. We propose a modified model, where instead of document authors we consider textual mentions of persons and institutions as actors. This representation proves to be more appropriate for the solution of a range of Internet Sociology tasks. In the paper we describe experiments with the modified model and provide some background on the tools that can be used to build it. The model is tested on the experimental corpora of Russian news (educational domain). The research reflects the pilot study findings. 
-</abstract>
-<biblio>
-1. Alexandrov, M.: Development of general methodology for analysis of public opinion
+<article><preamble>Alexandrov_2015_A_Modified_Tripartite_Model_for_Document_Representation_in_Internet_Sociology</preamble><titre>A Modified Tripartite Model for Document</titre><auteur>[u'Representation in Internet Sociology']</auteur><abstract> Seven years ago Peter Mika (Yahoo! Research) proposed a tripartite model of actors, concepts and instances for document representation in the study of social networks. We propose a modified model, where instead of document authors we consider textual mentions of persons and institutions as actors. This representation proves to be more appropriate for the solution of a range of Internet Sociology tasks. In the paper we describe experiments with the modified model and provide some background on the tools that can be used to build it. The model is tested on the experimental corpora of Russian news (educational domain). The research reflects the pilot study findings. </abstract><biblio>1. Alexandrov, M.: Development of general methodology for analysis of public opinion
 of Internet-community and its application to given topics (authority, economy,
 corruption, etc.) on the basis of Data/Text Mining tools. Report on State project
 84, RPANEPA [rus] (2013)
@@ -49,25 +35,7 @@ Web Semant. Sci. Serv. Agents World Wide Web 5(1), 5&#8211;15 (2007)
 14. Stein, B., Niggemann, O.: On the nature of structure and its identification. In:
 Widmayer, P., Neyer, G., Eidenbenz, S. (eds.) WG 1999. LNCS, vol. 1665, p. 122.
 Springer, Heidelberg (1999)
-
-</biblio>
-
-</article>
-<article>
-<preamble>
-Doyle_2005_Automatic_Categorization_of_Author_Gender
-</preamble>
-<titre>
-Automatic Categorization of Author Gender
-</titre>
-<auteur>
-[u'via N-Gram Analysis']
-</auteur>
-<abstract>
- We present a method for automatic categorization of author gender via n-gram analysis. Using a corpus of British student essays, experiments using character-level, wordlevel, and part-of-speech n-grams are performed. The peak accuracy for all methods is roughly equal, reaching a maximum of 81%. These results are on par with other, established techniques, while retaining the simplicity and ease-of-generalization inherent in n-gram techniques.
-</abstract>
-<biblio>
-A. Aizawa. 2001. Linguistic techniques to improve
+</biblio></article><article><preamble>Doyle_2005_Automatic_Categorization_of_Author_Gender</preamble><titre>Automatic Categorization of Author Gender</titre><auteur>[u'via N-Gram Analysis']</auteur><abstract> We present a method for automatic categorization of author gender via n-gram analysis. Using a corpus of British student essays, experiments using character-level, wordlevel, and part-of-speech n-grams are performed. The peak accuracy for all methods is roughly equal, reaching a maximum of 81%. These results are on par with other, established techniques, while retaining the simplicity and ease-of-generalization inherent in n-gram techniques.</abstract><biblio>A. Aizawa. 2001. Linguistic techniques to improve
 the performance of automatic text categorization. In Proceedings 6th NLP Pac. Rim Symp.
 Shlomo Argamon, Moshe Koppel, Jonathan Fine,
 and Anat Rachel Shimoni. 2003. Gender, genre,
@@ -118,25 +86,7 @@ Humanities, 35:193&#8211;214.
 J. Cleary T. Bell and I. Witten. 1990. Text Compression. Prentice Hall.
 Ying Zhao and Justin Zobel. 2005. Effective
 and scalable authorship attribution using function words. The 2nd Asia Information Retrieval
-
-</biblio>
-
-</article>
-<article>
-<preamble>
-Furui_2004_Speech-to-text_and_speech-to-speech_summarization_of_spontaneous_speech
-</preamble>
-<titre>
-IEEE TRANSACTIONS ON SPEECH AND AUDIO PROCESSING, VOL. 12, NO. 4, JULY 2004
-</titre>
-<auteur>
-[u'']
-</auteur>
-<abstract>
-This paper presents techniques for speech-to-text and speech-to-speech automatic summarization based on speech unit extraction and concatenation. For the former case, a two-stage summarization method consisting of important sentence extraction and word-based sentence compaction is investigated. Sentence and word units which maximize the weighted sum of linguistic likelihood, amount of information, confidence measure, and grammatical likelihood of concatenated units are extracted from the speech recognition results and concatenated for producing summaries. For the latter case, sentences, words, and between-filler units are investigated as units to be extracted from original speech. These methods are applied to the summarization of unrestricted-domain spontaneous presentations and evaluated by objective and subjective measures. It was confirmed that proposed methods are effective in spontaneous speech summarization. Index Terms&#8212;Presentation, speech recognition, speech summarization, speech-to-speech, speech-to-text, spontaneous speech.
-</abstract>
-<biblio>
-[1] S. Furui, K. Iwano, C. Hori, T. Shinozaki, Y. Saito, and S. Tamura,
+</biblio></article><article><preamble>Furui_2004_Speech-to-text_and_speech-to-speech_summarization_of_spontaneous_speech</preamble><titre>IEEE TRANSACTIONS ON SPEECH AND AUDIO PROCESSING, VOL. 12, NO. 4, JULY 2004</titre><auteur>[u'']</auteur><abstract>This paper presents techniques for speech-to-text and speech-to-speech automatic summarization based on speech unit extraction and concatenation. For the former case, a two-stage summarization method consisting of important sentence extraction and word-based sentence compaction is investigated. Sentence and word units which maximize the weighted sum of linguistic likelihood, amount of information, confidence measure, and grammatical likelihood of concatenated units are extracted from the speech recognition results and concatenated for producing summaries. For the latter case, sentences, words, and between-filler units are investigated as units to be extracted from original speech. These methods are applied to the summarization of unrestricted-domain spontaneous presentations and evaluated by objective and subjective measures. It was confirmed that proposed methods are effective in spontaneous speech summarization. Index Terms&#8212;Presentation, speech recognition, speech summarization, speech-to-speech, speech-to-text, spontaneous speech.</abstract><biblio>[1] S. Furui, K. Iwano, C. Hori, T. Shinozaki, Y. Saito, and S. Tamura,
 &#8220;Ubiquitous speech processing,&#8221; in Proc. ICASSP2001, vol. 1, Salt Lake
 City, UT, 2001, pp. 13&#8211;16.
 [2] S. Furui, &#8220;Recent advances in spontaneous speech recognition and understanding,&#8221; in Proc. ISCA-IEEE Workshop on Spontaneous Speech
@@ -234,25 +184,7 @@ Dr. Hori is a member of the Acoustical Society of Japan (ASJ), the Institute
 of Electronics, Information and Communication Engineers of Japan (IEICE),
 and the Information Processing Society of Japan (IPSJ). She received the Paper
 Award from the IEICE in 2002 for her work on speech summarization.
-
-</biblio>
-
-</article>
-<article>
-<preamble>
-Gonzalez_2018_Automated_Sentence_Boundary_Detection_in_Modern_StandardArabic_Transcripts_using_Deep_Neural_Networks
-</preamble>
-<titre>
-Available
-</titre>
-<auteur>
-[u'Available online']
-</auteur>
-<abstract>
- 
-</abstract>
-<biblio>
-[1] Alotaiby, F., Foda, S., Alkharashi, I., 2010. Clitics in arabic language: a statistical study, in: 24th Pacific Asia Conference on Language,
+</biblio></article><article><preamble>Gonzalez_2018_Automated_Sentence_Boundary_Detection_in_Modern_StandardArabic_Transcripts_using_Deep_Neural_Networks</preamble><titre>Available</titre><auteur>[u'Available online']</auteur><abstract> </abstract><biblio>[1] Alotaiby, F., Foda, S., Alkharashi, I., 2010. Clitics in arabic language: a statistical study, in: 24th Pacific Asia Conference on Language,
 Information and Computation.
 [2] Althobaiti, M., Kruschwitz, U., Poesio, M., 2014. Aranlp: A java-based library for the processing of arabic text, in: LREC.
 [3] Attia, M., Somers, H., 2008. Handling Arabic morphological and syntactic ambiguity within the LFG framework with a view to machine
@@ -304,25 +236,7 @@ pp. 123&#8211;130. URL: http://doi.acm.org/10.1145/3011077.3011111, doi:10.1145/
 [31] Yu, D., Deng, L., 2016. Automatic Speech Recognition. Springer.
 [32] Zribi, I., Kammoun, I., Ellouze, M., Belguith, L., Blache, P., 2016. Sentence boundary detection for transcribed tunisian arabic, in: 13th
 Conference on Natural Language Processing (KONVENS 2016), pp. 323&#8211;331.
-
-</biblio>
-
-</article>
-<article>
-<preamble>
-Levner_2007_Fuzzifying_clustering_algorithms_The_case_study_of_MajorClust
-</preamble>
-<titre>
-Fuzzifying clustering algorithms:
-</titre>
-<auteur>
-[u'The case study of MajorClust']
-</auteur>
-<abstract>
- Among various document clustering algorithms that have been proposed so far, the most useful are those that automatically reveal the number of clusters and assign each target document to exactly one cluster. However, in many real situations, there not exists an exact boundary between different clusters. In this work, we introduce a fuzzy version of the MajorClust algorithm. The proposed clustering method assigns documents to more than one category by taking into account a membership function for both, edges and nodes of the corresponding underlying graph. Thus, the clustering problem is formulated in terms of weighted fuzzy graphs. The fuzzy approach permits to decrease some negative effects which appear in clustering of large-sized corpora with noisy data.
-</abstract>
-<biblio>
-1. MacKay, D.J.: Information Theory, Inference and Learning Algorithms. Cambridge
+</biblio></article><article><preamble>Levner_2007_Fuzzifying_clustering_algorithms_The_case_study_of_MajorClust</preamble><titre>Fuzzifying clustering algorithms:</titre><auteur>[u'The case study of MajorClust']</auteur><abstract> Among various document clustering algorithms that have been proposed so far, the most useful are those that automatically reveal the number of clusters and assign each target document to exactly one cluster. However, in many real situations, there not exists an exact boundary between different clusters. In this work, we introduce a fuzzy version of the MajorClust algorithm. The proposed clustering method assigns documents to more than one category by taking into account a membership function for both, edges and nodes of the corresponding underlying graph. Thus, the clustering problem is formulated in terms of weighted fuzzy graphs. The fuzzy approach permits to decrease some negative effects which appear in clustering of large-sized corpora with noisy data.</abstract><biblio>1. MacKay, D.J.: Information Theory, Inference and Learning Algorithms. Cambridge
 University Press (2003)
 2. Mirkin, B.: Mathematical Classification and Clustering. Springer (1996)
 3. MacQueen, J.B.: Some methods for classification and analysis of multivariate
@@ -364,45 +278,9 @@ V. (2003) 254&#8211;264
 logic. (1976) 196&#8211;202
 19. Zimmermann, H.: Fuzzy Sets, Decision Making and Expert Systems. Kluwer
 Academic Publishers, Boston (1987)
-
-</biblio>
-
-</article>
-<article>
-<preamble>
-Lin_2004_Rouge
-</preamble>
-<titre>
-ROUGE: A Package for Automatic Evaluation of Summaries
-</titre>
-<auteur>
-[u'Chin-Yew Lin']
-</auteur>
-<abstract>
- ROUGE stands for Recall-Oriented Understudy for Gisting Evaluation. It includes measures to automatically determine the quality of a summary by comparing it to other (ideal) summaries created by humans. The measures count the number of overlapping units such as n-gram, word sequences, and word pairs between the computer-generated summary to be evaluated and the ideal summaries created by humans. This paper introduces four different ROUGE measures: ROUGE-N, ROUGE-L, ROUGE-W, and ROUGE-S included in the ROUGE summarization evaluation package and their evaluatio ns. Three of them have been used in the Document Understanding Conference (DUC) 2004, a large-scale summarization evaluation sponsored by NIST. 1
-</abstract>
-<biblio>
-. Please see Papineni et
+</biblio></article><article><preamble>Lin_2004_Rouge</preamble><titre>ROUGE: A Package for Automatic Evaluation of Summaries</titre><auteur>[u'Chin-Yew Lin']</auteur><abstract> ROUGE stands for Recall-Oriented Understudy for Gisting Evaluation. It includes measures to automatically determine the quality of a summary by comparing it to other (ideal) summaries created by humans. The measures count the number of overlapping units such as n-gram, word sequences, and word pairs between the computer-generated summary to be evaluated and the ideal summaries created by humans. This paper introduces four different ROUGE measures: ROUGE-N, ROUGE-L, ROUGE-W, and ROUGE-S included in the ROUGE summarization evaluation package and their evaluatio ns. Three of them have been used in the Document Understanding Conference (DUC) 2004, a large-scale summarization evaluation sponsored by NIST. 1</abstract><biblio>. Please see Papineni et
 al. (2001) for details about BLEU .
-Note that the number of n-grams in the denominator of the ROUGE-N formula increases as we add
-</biblio>
-
-</article>
-<article>
-<preamble>
-Metsis_2006_Spam_filtering_with_naive_bayes-which_naive_bayes
-</preamble>
-<titre>
-Spam Filtering with Naive Bayes &#8211; Which Naive Bayes?
-</titre>
-<auteur>
-[u'Vangelis Metsis']
-</auteur>
-<abstract>
- Naive Bayes is very popular in commercial and open-source anti-spam e-mail filters. There are, however, several forms of Naive Bayes, something the anti-spam literature does not always acknowledge. We discuss five different versions of Naive Bayes, and compare them on six new, non-encoded datasets, that contain ham messages of particular Enron users and fresh spam messages. The new datasets, which we make publicly available, are more realistic than previous comparable benchmarks, because they maintain the temporal order of the messages in the two categories, and they emulate the varying proportion of spam and ham messages that users receive over time. We adopt an experimental procedure that emulates the incremental training of personalized spam filters, and we plot roc curves that allow us to compare the different versions of nb over the entire tradeoff between true positives and true negatives.
-</abstract>
-<biblio>
-[1] I. Androutsopoulos, J. Koutsias, K. Chandrinos, and
+Note that the number of n-grams in the denominator of the ROUGE-N formula increases as we add</biblio></article><article><preamble>Metsis_2006_Spam_filtering_with_naive_bayes-which_naive_bayes</preamble><titre>Spam Filtering with Naive Bayes &#8211; Which Naive Bayes?</titre><auteur>[u'Vangelis Metsis']</auteur><abstract> Naive Bayes is very popular in commercial and open-source anti-spam e-mail filters. There are, however, several forms of Naive Bayes, something the anti-spam literature does not always acknowledge. We discuss five different versions of Naive Bayes, and compare them on six new, non-encoded datasets, that contain ham messages of particular Enron users and fresh spam messages. The new datasets, which we make publicly available, are more realistic than previous comparable benchmarks, because they maintain the temporal order of the messages in the two categories, and they emulate the varying proportion of spam and ham messages that users receive over time. We adopt an experimental procedure that emulates the incremental training of personalized spam filters, and we plot roc curves that allow us to compare the different versions of nb over the entire tradeoff between true positives and true negatives.</abstract><biblio>[1] I. Androutsopoulos, J. Koutsias, K. Chandrinos, and
 C. Spyropoulos. An experimental comparison of Naive
 Bayesian and keyword-based anti-spam filtering with
 encrypted personal e-mail messages. In 23rd ACM
@@ -658,25 +536,7 @@ pages 307&#8211;314, Budapest, Hungary, 2003.
 negative evidence in Naive Bayes text classification. In
 4th International Conference on Advances in Natural
 Language Processing, pages 474&#8211;485, Alicante, Spain,
-
-</biblio>
-
-</article>
-<article>
-<preamble>
-Mikolov_2013_Distributed_representations_of_words_and_phrases_and_their_compositionality
-</preamble>
-<titre>
-Distributed Representations of Words and Phrases
-</titre>
-<auteur>
-[u'and their Compositionality']
-</auteur>
-<abstract>
- The recently introduced continuous Skip-gram model is an efficient method for learning high-quality distributed vector representations that capture a large number of precise syntactic and semantic word relationships. In this paper we present several extensions that improve both the quality of the vectors and the training speed. By subsampling of the frequent words we obtain significant speedup and also learn more regular word representations. We also describe a simple alternative to the hierarchical softmax called negative sampling. An inherent limitation of word representations is their indifference to word order and their inability to represent idiomatic phrases. For example, the meanings of &#8220;Canada&#8221; and &#8220;Air&#8221; cannot be easily combined to obtain &#8220;Air Canada&#8221;. Motivated by this example, we present a simple method for finding phrases in text, and show that learning good vector representations for millions of phrases is possible.
-</abstract>
-<biblio>
-[1] Yoshua Bengio, Re&#769;jean Ducharme, Pascal Vincent, and Christian Janvin. A neural probabilistic language
+</biblio></article><article><preamble>Mikolov_2013_Distributed_representations_of_words_and_phrases_and_their_compositionality</preamble><titre>Distributed Representations of Words and Phrases</titre><auteur>[u'and their Compositionality']</auteur><abstract> The recently introduced continuous Skip-gram model is an efficient method for learning high-quality distributed vector representations that capture a large number of precise syntactic and semantic word relationships. In this paper we present several extensions that improve both the quality of the vectors and the training speed. By subsampling of the frequent words we obtain significant speedup and also learn more regular word representations. We also describe a simple alternative to the hierarchical softmax called negative sampling. An inherent limitation of word representations is their indifference to word order and their inability to represent idiomatic phrases. For example, the meanings of &#8220;Canada&#8221; and &#8220;Air&#8221; cannot be easily combined to obtain &#8220;Air Canada&#8221;. Motivated by this example, we present a simple method for finding phrases in text, and show that learning good vector representations for millions of phrases is possible.</abstract><biblio>[1] Yoshua Bengio, Re&#769;jean Ducharme, Pascal Vincent, and Christian Janvin. A neural probabilistic language
 model. The Journal of Machine Learning Research, 3:1137&#8211;1155, 2003.
 [2] Ronan Collobert and Jason Weston. A unified architecture for natural language processing: deep neural networks with multitask learning. In Proceedings of the 25th international conference on Machine
 learning, pages 160&#8211;167. ACM, 2008.
@@ -715,25 +575,7 @@ In Transactions of the Association for Computational Linguistics (TACL), 353&#82
 [20] Jason Weston, Samy Bengio, and Nicolas Usunier. Wsabie: Scaling up to large vocabulary image annotation. In Proceedings of the Twenty-Second international joint conference on Artificial Intelligence-Volume
 Volume Three, pages 2764&#8211;2770. AAAI Press, 2011.
 9
-
-</biblio>
-
-</article>
-<article>
-<preamble>
-Torres-Moreno_2012_Artex_is_another_text_summarizer
-</preamble>
-<titre>
-Artex is AnotheR TEXt summarizer
-</titre>
-<auteur>
-[u'Juan-Manuel Torres-Moreno1,2']
-</auteur>
-<abstract>
- This paper describes Artex, another algorithm for Automatic Text Summarization. In order to rank sentences, a simple inner product is calculated between each sentence, a document vector (text topic) and a lexical vector (vocabulary used by a sentence). Summaries are then generated by assembling the highest ranked sentences. No ruled-based linguistic post-processing is necessary in order to obtain summaries. Tests over several datasets (coming from Document Understanding Conferences (DUC), Text Analysis Conference (TAC), evaluation campaigns, etc.) in French, English and Spanish have shown that Artex summarizer achieves interesting results.
-</abstract>
-<biblio>
-) confirm the good
+</biblio></article><article><preamble>Torres-Moreno_2012_Artex_is_another_text_summarizer</preamble><titre>Artex is AnotheR TEXt summarizer</titre><auteur>[u'Juan-Manuel Torres-Moreno1,2']</auteur><abstract> This paper describes Artex, another algorithm for Automatic Text Summarization. In order to rank sentences, a simple inner product is calculated between each sentence, a document vector (text topic) and a lexical vector (vocabulary used by a sentence). Summaries are then generated by assembling the highest ranked sentences. No ruled-based linguistic post-processing is necessary in order to obtain summaries. Tests over several datasets (coming from Document Understanding Conferences (DUC), Text Analysis Conference (TAC), evaluation campaigns, etc.) in French, English and Spanish have shown that Artex summarizer achieves interesting results.</abstract><biblio>) confirm the good
 performance of Artex.
 In this paper, related work is given in Section 2. Section 3 presents the new algorithm of
 Automatic Text Summarization. Experiments are presented in Section 4, followed by Results
@@ -960,25 +802,7 @@ Summaries Content Evaluation
 
 DUC conferences have introduced the ROUGE content evaluation [7], wich measures the overlap of n-grams between a candidate summary and reference summaries written by humans.
 However, to write the human summaries necessaries for ROUGE is a very expensive task.
-Recently metrics without 
-</biblio>
-
-</article>
-<article>
-<preamble>
-Vanderwende_2007_Beyond_SumBasic
-</preamble>
-<titre>
-Information Processing and Management 43 (2007) 1606&#8211;1618
-</titre>
-<auteur>
-[u'www.elsevier.com/locate/infoproman']
-</auteur>
-<abstract>
- In recent years, there has been increased interest in topic-focused multi-document summarization. In this task, automatic summaries are produced in response to a speci&#64257;c information request, or topic, stated by the user. The system we have designed to accomplish this task comprises four main components: a generic extractive summarization system, a topic-focusing component, sentence simpli&#64257;cation, and lexical expansion of topic words. This paper details each of these components, together with experiments designed to quantify their individual contributions. We include an analysis of our results on two large datasets commonly used to evaluate task-focused summarization, the DUC2005 and DUC2006 datasets, using automatic metrics. Additionally, we include an analysis of our results on the DUC2006 task according to human evaluation metrics. In the human evaluation of system summaries compared to human summaries, i.e., the Pyramid method, our system ranked &#64257;rst out of 22 systems in terms of overall mean Pyramid score; and in the human evaluation of summary responsiveness to the topic, our system ranked third out of 35 systems. &#211; 2007 Elsevier Ltd. All rights reserved. 
-</abstract>
-<biblio>
-Brockett, C., &amp; Dolan, W. B. (2005). Support vector machines for paraphrase identi&#64257;cation and corpus construction. In Proceedings of the
+Recently metrics without </biblio></article><article><preamble>Vanderwende_2007_Beyond_SumBasic</preamble><titre>Information Processing and Management 43 (2007) 1606&#8211;1618</titre><auteur>[u'www.elsevier.com/locate/infoproman']</auteur><abstract> In recent years, there has been increased interest in topic-focused multi-document summarization. In this task, automatic summaries are produced in response to a speci&#64257;c information request, or topic, stated by the user. The system we have designed to accomplish this task comprises four main components: a generic extractive summarization system, a topic-focusing component, sentence simpli&#64257;cation, and lexical expansion of topic words. This paper details each of these components, together with experiments designed to quantify their individual contributions. We include an analysis of our results on two large datasets commonly used to evaluate task-focused summarization, the DUC2005 and DUC2006 datasets, using automatic metrics. Additionally, we include an analysis of our results on the DUC2006 task according to human evaluation metrics. In the human evaluation of system summaries compared to human summaries, i.e., the Pyramid method, our system ranked &#64257;rst out of 22 systems in terms of overall mean Pyramid score; and in the human evaluation of summary responsiveness to the topic, our system ranked third out of 35 systems. &#211; 2007 Elsevier Ltd. All rights reserved. </abstract><biblio>Brockett, C., &amp; Dolan, W. B. (2005). Support vector machines for paraphrase identi&#64257;cation and corpus construction. In Proceedings of the
 third international workshop on paraphrasing (IWP2005), Jeju, Republic of Korea.
 Conroy, J. M., Schlesinger, J., &amp; Goldstein Stewart, J. (2005). CLASSY query-based multi-document summarization. In Proceedings of
 Daume&#769;, H., III, &amp; Marcu, D. (2005a). Bayesian multi-document summarization at MSE. In Proceedings of MSE 2005.
@@ -1014,7 +838,4 @@ summarization. In Proceedings of COLING 2004.
 Voorhees, E. (1988). Using WordNet for text retrieval. In C. Fellbaum (Ed.), WordNet: An electronic lexical database. The MIT Press.
 Zajic, D., Dorr, B., Lin, J., Monz, C., &amp; Schwartz, R. (2005). A sentence-trimming approach to multi-document summarization. In
 Proceedings of DUC2005.
-
-</biblio>
-
-</article>
+</biblio></article>

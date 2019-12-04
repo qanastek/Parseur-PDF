@@ -157,8 +157,7 @@ for item in splitted[0:-1]:
 			biblio = SubElement(root, 'biblio')
 			biblio.text = str(bibliographie)
 
-			xml = tostring(root).replace(">", ">\n")
-			xml = xml.replace("</", "\n</")
+			xml = tostring(root)
 
 			# Create the output file
 			os.system('touch resultat.xml')
