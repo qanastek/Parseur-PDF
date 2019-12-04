@@ -48,8 +48,10 @@ def getTitle(data):
 	return data.split('\n')[0]
 
 def getAuthors(data):
-    	
-	return data.split('\n')[1:2]
+    
+	res = data.split('\n')[1]
+	# print(res)
+	return res
 
 def getReferences(data):
 
@@ -68,9 +70,8 @@ def getReferences(data):
 	for line in page:
 
 		if line == "\n" or len(line) <= 15 or re.match("^[\[\]0-9\.\ \|]+$",line):
+			# print(line)
 			page.remove(line)
-
-		previousLine = line
 
 	# .split("\n\n")[0]
 	return "\n".join(page)
@@ -128,6 +129,8 @@ for item in splitted[0:-1]:
 			with open("resultat.txt", 'a') as res:
 				res.write("\n")
 				res.write("File name: " + fileName)
+				res.write("\n\n")
+				res.write("Authors: " + author)
 				res.write("\n\n")
 				res.write("Title: " + title)
 				res.write("\n\n")
