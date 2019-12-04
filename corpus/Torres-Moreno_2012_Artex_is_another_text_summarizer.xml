@@ -404,25 +404,21 @@ the summary. Let T be the set of terms in the source. For every t ∈ T , we den
 occurrences in the source and CtS its occurrences in the summary.
 The Fresa package computed the divergence between the document source and the summaries as follows:
 
+
+ S
+
+X   C T
+
+Ct
+t
+
+
 D(T ||S) =
+log |T | + 1 − log |S| + 1 
 
 (8)
 
-X
 t∈T
-
-
-log
-
-
- S
-
-Ct
-CtT
-+ 1 − log
-+1
-|T |
-|S|
 
 To evaluate the information content (the “quality”) of the generated summaries, after removing stop-words, several automatic measures were computed: Fresa1 (Unigrams of single
 stems), Fresa2 (Bigrams of pairs of consecutive stems), FresaSU 4 (Bigrams with 2-gaps also

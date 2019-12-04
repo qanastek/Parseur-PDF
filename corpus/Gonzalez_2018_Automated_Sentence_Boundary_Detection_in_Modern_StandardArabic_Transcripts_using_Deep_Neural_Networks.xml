@@ -629,7 +629,7 @@ c 2018 The Authors. Published by Elsevier B.V.
 This is an open access article under the CC BY-NC-ND license (http://creativecommons.org/licenses/by-nc-nd/3.0/)
 Peer-review under responsibility of the scientific committee of the 4th International Conference on Arabic Computational Linguistics.
 
-340
+340	
 2
 
 Carlos-Emiliano González-Gallardo et al. / Procedia Computer Science 142 (2018) 339–346
@@ -692,7 +692,9 @@ https://www.ted.com/
 https://www.dailymotion.com/fr
 http://kaldi-asr.org/
 
-Carlos-Emiliano González-Gallardo et al. / Procedia Computer Science 142 (2018) 339–346
+	
+
+Carlos-Emiliano González-Gallardo et al. / Procedia Computer Science 142 (2018) 339–346
 C.E. González-Gallardo et al. / Procedia Computer Science 00 (2018) 000–000
 
 341
@@ -733,17 +735,14 @@ or more tokens depending of the amount of clitics within the word:
 
 
     
-     
+          
+  	        
   
     
     
+
 
 
-
-
-
-         
-
 The final size of the datasets after normalization and tokenization as well as the training, validation and testing
 distribution can be observed in Table 1. We opted to omit the validation set for TED given its reduced size.
 11
@@ -757,7 +756,7 @@ https://catalog.ldc.upenn.edu/LDC2011T11
 Carlos-Emiliano González-Gallardo et al. / Procedia Computer Science 142 (2018) 339–346
 C.E. González-Gallardo et al. / Procedia Computer Science 00 (2018) 000–000
 
-342
+342	
 4
 
 It is important to remark the class distribution disparity. Given the nature of the dataset, where sentence boundaries are much less frequent that nonsentence boundaries, the ”BOUNDARY” class oscillates between 6.185% and
@@ -846,7 +845,9 @@ blocks. We consider two convolutional layers, with valid padding and stride valu
 
 https://fasttext.cc/
 
-Carlos-Emiliano González-Gallardo et al. / Procedia Computer Science 142 (2018) 339–346
+	
+
+Carlos-Emiliano González-Gallardo et al. / Procedia Computer Science 142 (2018) 339–346
 C.E. González-Gallardo et al. / Procedia Computer Science 00 (2018) 000–000
 
 343
@@ -922,7 +923,7 @@ Accuracy is likely to be biased by the larger class; thus we also compute Precis
 Carlos-Emiliano González-Gallardo et al. / Procedia Computer Science 142 (2018) 339–346
 C.E. González-Gallardo et al. / Procedia Computer Science 00 (2018) 000–000
 
-344
+344	
 6
 
 Fig. 1. The words are represented by the word embedding representations. The attention mechanism improves the decode processing. The output
@@ -1017,7 +1018,9 @@ the models trained on S1 . For this scenario we continued training SBDConv and S
 TED dataset size is very small for NN training strategies to consider the creation of a validation set. For this reason,
 GW valid was used during validation phase and epoch control for both systems. The reduced size of TEDtrain lead to a
 
-Carlos-Emiliano González-Gallardo et al. / Procedia Computer Science 142 (2018) 339–346
+	
+
+Carlos-Emiliano González-Gallardo et al. / Procedia Computer Science 142 (2018) 339–346
 C.E. González-Gallardo et al. / Procedia Computer Science 00 (2018) 000–000
 
 345
@@ -1094,7 +1097,7 @@ Acknowledgements
 We would like to acknowledge the support of CHISTERA-AMIS ANR-15-CHR2-0001 for funding this research
 through the Access Multilingual Information opinionS (AMIS), (France-Europe) project.
 
-346
+346	
 8
 
 Carlos-Emiliano González-Gallardo et al. / Procedia Computer Science 142 (2018) 339–346

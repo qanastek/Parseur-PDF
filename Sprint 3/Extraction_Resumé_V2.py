@@ -5,6 +5,9 @@ import re
 import os
 import sys
 
+reload(sys)  
+sys.setdefaultencoding('utf-8')
+
 from xml.etree.ElementTree import Element, SubElement, Comment, tostring
 
 if len(sys.argv) != 2:
@@ -41,9 +44,21 @@ def getTitle(data):
     			
 	# 		return line
 
+def getReferences(data):
 
-rm = "rm *.txt"
-os.system(rm)
+	if re.search("references",data):
+		rslt = data.split('references')[1]
+
+	elif re.search("References",data):
+		rslt = data.split("References")[1]
+
+	elif re.search("REFERENCES",data):
+		rslt = data.split("REFERENCES")[1]
+
+	return rslt
+
+os.system("rm *.txt")
+os.system("rm *.xml")
 
 # Delete spaces from file names
 os.system("""
@@ -89,7 +104,7 @@ for item in splitted[0:-1]:
 		title = getTitle(data)
 		author = "Unknown"
 		resume = getResume(data)
-		biblio = "Unknown"
+		bibliographie = getReferences(data)
 
 		if out == "txt":
     			
@@ -103,6 +118,8 @@ for item in splitted[0:-1]:
 				res.write("Title: " + title)
 				res.write("\n\n")
 				res.write("Résumé: " + resume)
+				res.write("\n\n")
+				res.write("Biblio: " + bibliographie)
 				res.write("\n\n-------------------------------------------------------------\n")
 			res.close()
 
@@ -123,7 +140,7 @@ for item in splitted[0:-1]:
 			abstract.text = resume
 
 			biblio = SubElement(root, 'biblio')
-			biblio.text = biblio
+			biblio.text = bibliographie
 
 			xml = tostring(root)
 
