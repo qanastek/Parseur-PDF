@@ -28,4 +28,4 @@ XML Output:
 user@user: python ../Sprint\ 2/Extraction_Resumé_V2.py -x
 ```
 
-Vous trouverez par la suite un fichier resultat.txt ou .xml à l'endroit où vous avez exécuté le programme.
+Vous trouverez par la suite un fichier **resultat.txt** ou **xml** à l'endroit où vous avez exécuté le programme.
