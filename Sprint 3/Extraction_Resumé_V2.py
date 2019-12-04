@@ -32,8 +32,6 @@ def getResume(data):
 	# Delete characters which aren't Alpha and Space
 	splitted2 = re.sub('[^a-zA-Z ]+', '', splitted2[:5]) + splitted2[5:]
 
-	return splitted2
-
 def getTitle(data):
     	
 	return data.split('\n')[0]
@@ -56,6 +54,10 @@ def getReferences(data):
 		rslt = data.split("REFERENCES")[1]
 
 	return rslt
+
+def getAuthors(data):
+
+	return data.split('\n')[1:2]
 
 os.system("rm *.txt")
 os.system("rm *.xml")
@@ -102,7 +104,7 @@ for item in splitted[0:-1]:
 
 		fileName = name
 		title = getTitle(data)
-		author = "Unknown"
+		author = getAuthors(data)
 		resume = getResume(data)
 		bibliographie = getReferences(data)
 
