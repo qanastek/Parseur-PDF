@@ -117,6 +117,7 @@ def getConclusion(data):
 	return "\n".join(conclu)	
 
 def getIntroduction(data):
+	
 	if re.search("Introduction",data):
 			splitted = data.split("Introduction")[1]
 	elif re.search("INTRODUCTION",data):
@@ -132,7 +133,7 @@ def getIntroduction(data):
 	splitted2 = splitted2.replace("\n"," ")
 
 	# Delete characters which aren't Alpha and Space
-	splitted3 = re.compile("^[\n2\.\n\t]*$").split(splitted2)
+	splitted3 = re.compile("^[\n2\.\n\t]*$").split(splitted2)[0]
 	
 	return splitted3
 
