@@ -83,12 +83,12 @@ def getDiscution(data):
 	return ""
 
 def getCorps(data):
-	start = 'introduction'
+	start = 'introduction\n'
 	s = data
-	s = s[s.lower().rfind(start) + len(start):s.lower().rfind('conclusion')]
+	s = s[s.lower().find(start) + len(start):s.lower().rfind('conclusion')]
 
 	if len(s) <= 10:
-		s = s[s.lower().rfind(start) + len(start):s.lower().rfind('references\n')]
+		s = s[s.lower().find(start) + len(start):s.lower().rfind('references\n')]
 		
 	return s
 
