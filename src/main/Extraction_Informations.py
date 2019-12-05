@@ -13,7 +13,6 @@ from xml.etree.ElementTree import Element, SubElement, Comment, tostring
 if len(sys.argv) != 2:
 	sys.exit("Erreur argument manquant !")
 
-
 def convertPdfToTxt(splitted):
     	
 	for name in splitted[0:-1]:
@@ -122,7 +121,14 @@ def getDiscution(data):
 	return ""
 
 def getCorps(data):
-	return ""
+	start = 'introduction\n'
+	s = data
+	s = s[s.lower().find(start) + len(start):s.lower().rfind('conclusion')]
+
+	if len(s) <= 10:
+		s = s[s.lower().find(start) + len(start):s.lower().rfind('references\n')]
+		
+	return s
 
 os.system("rm *.txt")
 os.system("rm *.xml")
@@ -191,6 +197,8 @@ for item in splitted[0:-1]:
 				res.write("Conclusion: " + str(conclusion))
 				res.write("\n\n")
 				res.write("Biblio: " + str(bibliographie))
+				res.write("\n\n")
+				res.write("Corps:" + str(corps))
 				res.write("\n\n-------------------------------------------------------------\n")
 			res.close()
 
@@ -226,3 +234,4 @@ for item in splitted[0:-1]:
 
 
 	f.close()
+
