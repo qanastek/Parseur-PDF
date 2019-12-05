@@ -72,7 +72,49 @@ def getAuthors(data):
 	return data.split('\n')[1]
 
 def getConclusion(data):
-	return ""
+
+	# Geteverything after the keyword "Conclusion"
+	if re.search("Conclusion",data):
+
+		if data.count("Conclusion")>1:
+			rslt = data.split('Conclusion')[2]
+		else:
+			rslt = data.split('Conclusion')[1]
+
+	elif re.search("CONCLUSION",data):
+		rslt = data.split("CONCLUSION")[1]
+
+	if re.search("Acknowledgments",data):
+		rslt = rslt.split("Acknowledgments")[0]
+
+	elif re.search("ACKNOWLEDGEMNTS",data):
+		rslt = rslt.split("ACKNOWLEDGMENTS")[0]
+
+	if re.search("Acknowledgements",data):
+		rslt = rslt.split("Acknowledgements")[0]
+
+	elif re.search("ACKNOWLEDGEMENTS",data):
+		rslt = rslt.split("ACKNOWLEDGEMENTS")[0]	
+
+	if re.search("References",data):
+		rslt = rslt.split("References")[0]
+
+	elif re.search("REFERENCES",data):
+		rslt = rslt.split("REFERENCES")[0]
+
+	# Get each line of the page
+
+	conclu = rslt.split("\n")
+
+	# print(conclu)
+	for line in conclu:
+
+		if line == "\n" or len(line) <= 15 or re.match("^[\[\]0-9\.\ \|]+$",line) or re.match("^[0-9]+$",line):
+			# print(line)
+			conclu.remove(line)
+
+	# .split("\n\n")[0]
+	return "\n".join(conclu)	
 
 def getIntroduction(data):
 	return ""
@@ -81,13 +123,12 @@ def getDiscution(data):
 	return ""
 
 def getCorps(data):
-	start = 'introduction'
+	start = 'introduction\n'
 	s = data
-	s = s[s.lower().rfind(start) + len(start):s.lower().rfind('conclusion')]
+	s = s[s.lower().find(start) + len(start):s.lower().rfind('conclusion')]
 
 	if len(s) <= 10:
 		s = s[s.lower().rfind(start) + len(start):s.lower().rfind('references\n')]
-
 	return s
 
 def showChoices(ls):
@@ -166,6 +207,8 @@ with open(nameFile + ".txt", 'r') as f:
 			res.write("\n\n")
 			res.write("Résumé: " + str(resume))
 			res.write("\n\n")
+			res.write("Conclusion: " + str(conclusion))
+			res.write("\n\n")
 			res.write("Biblio: " + str(bibliographie))
 			res.write("\n\n")
 			res.write("Corps:" + str(corps))
@@ -204,4 +247,3 @@ with open(nameFile + ".txt", 'r') as f:
 
 
 f.close()
-
