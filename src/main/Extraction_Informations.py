@@ -77,7 +77,11 @@ def getConclusion(data):
 
 	# Geteverything after the keyword "Conclusion"
 	if re.search("Conclusion",data):
-		rslt = data.split('Conclusion')[1]
+
+		if data.count("Conclusion")>1:
+			rslt = data.split('Conclusion')[2]
+		else:
+			rslt = data.split('Conclusion')[1]
 
 	elif re.search("CONCLUSION",data):
 		rslt = data.split("CONCLUSION")[1]
@@ -104,11 +108,11 @@ def getConclusion(data):
 
 	conclu = rslt.split("\n")
 
-	print(conclu)
+	# print(conclu)
 	for line in conclu:
 
 		if line == "\n" or len(line) <= 15 or re.match("^[\[\]0-9\.\ \|]+$",line) or re.match("^[0-9]+$",line):
-			print(line)
+			# print(line)
 			conclu.remove(line)
 
 	# .split("\n\n")[0]
