@@ -41,6 +41,8 @@ def getResume(data):
 	# Delete characters which aren't Alpha and Space
 	splitted2 = re.sub('[^a-zA-Z ]+', '', splitted2[:5]) + splitted2[5:]
 
+	return splitted2
+
 def getTitle(data):
     	
 	return data.split('\n')[0]
@@ -82,7 +84,11 @@ def getDiscution(data):
 	return ""
 
 def getCorps(data):
-	return ""
+	start = 'introduction'
+	end = 'references\n'
+	s = data
+	s = s[s.lower().rfind(start)+len(start):s.lower().rfind(end)]
+	return s
 
 os.system("rm *.txt")
 os.system("rm *.xml")
@@ -119,6 +125,8 @@ for item in splitted[0:-1]:
 	with open(nameFile + ".txt", 'r') as f:
 
 		data = f.read().decode('utf-8')
+		
+
 
 		# Documents Informations
 		fileName = nameFile
@@ -149,6 +157,8 @@ for item in splitted[0:-1]:
 				res.write("Résumé: " + str(resume))
 				res.write("\n\n")
 				res.write("Biblio: " + str(bibliographie))
+				res.write("\n\n")
+				res.write("Corps: \n" + str(corps))
 				res.write("\n\n-------------------------------------------------------------\n")
 			res.close()
 
@@ -184,3 +194,4 @@ for item in splitted[0:-1]:
 
 
 	f.close()
+
