@@ -119,7 +119,24 @@ def getConclusion(data):
 	return "\n".join(conclu)	
 
 def getIntroduction(data):
-	return ""
+	if re.search("Introduction",data):
+			splitted = data.split("Introduction")[1]
+	elif re.search("INTRODUCTION",data):
+		splitted = data.split("INTRODUCTION")[1]
+
+	# Get first paragraphe
+	splitted2 = splitted.split("\n\n")[0]
+
+	# Cut after Keywords
+	splitted2 = splitted2.split("\n2\n")[0]
+
+	# Replace jump line by spaces
+	splitted2 = splitted2.replace("\n"," ")
+
+	# Delete characters which aren't Alpha and Space
+	splitted3 = re.compile("^[\n2\.\n\t]*$").split(splitted2)
+	
+	return splitted3
 
 def getDiscution(data):
 	return ""
@@ -200,6 +217,8 @@ for item in splitted[0:-1]:
 				res.write("\n\n")
 				res.write("Conclusion: " + str(conclusion))
 				res.write("\n\n")
+				res.write("Introduction: " + str(introduction))
+				res.write("\n\n")
 				res.write("Biblio: " + str(bibliographie))
 				res.write("\n\n")
 				res.write("Corps:" + str(corps))
@@ -222,6 +241,9 @@ for item in splitted[0:-1]:
 
 			abstract = SubElement(root, 'abstract')
 			abstract.text = str(resume)
+
+			intro = SubElement(root, 'introduction')
+			intro.text = str(introduction)
 
 			biblio = SubElement(root, 'biblio')
 			biblio.text = str(bibliographie)
