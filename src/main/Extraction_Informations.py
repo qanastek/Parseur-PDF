@@ -45,12 +45,6 @@ def getTitle(data):
     	
 	return data.split('\n')[0]
 
-def getAuthors(data):
-    
-	res = data.split('\n')[1]
-	# print(res)
-	return res
-
 def getReferences(data):
 
 	if re.search("references",data):
@@ -77,6 +71,18 @@ def getReferences(data):
 def getAuthors(data):
 
 	return data.split('\n')[1]
+
+def getConclusion(data):
+	return ""
+
+def getIntroduction(data):
+	return ""
+
+def getDiscution(data):
+	return ""
+
+def getCorps(data):
+	return ""
 
 os.system("rm *.txt")
 os.system("rm *.xml")
@@ -120,6 +126,10 @@ for item in splitted[0:-1]:
 		author = getAuthors(data)
 		resume = getResume(data)
 		bibliographie = getReferences(data)
+		conclusion = getConclusion(data)
+		introduction = getIntroduction(data)
+		discution = getDiscution(data)
+		corps = getCorps(data)
 
 		# If the user want to export as TXT
 		if out == "txt":
