@@ -13,6 +13,15 @@ from xml.etree.ElementTree import Element, SubElement, Comment, tostring
 if len(sys.argv) != 2:
 	sys.exit("Erreur argument manquant !")
 
+
+def convertPdfToTxt(splitted):
+    	
+	for name in splitted[0:-1]:
+		
+		nameRaw = name.split(".")[0]
+		rst = "pdftotext -enc UTF-8 '%s' '%s.txt'" % (name,nameRaw)
+		os.system(rst)
+
 def getResume(data):
     	
 	if re.search("Abstract",data):
@@ -36,11 +45,11 @@ def getTitle(data):
     	
 	return data.split('\n')[0]
 
-	# for line in data.split('\n'):
-		
-	# 	if not bool(re.search(r'\d', line)):
-    			
-	# 		return line
+def getAuthors(data):
+    
+	res = data.split('\n')[1]
+	# print(res)
+	return res
 
 def getReferences(data):
 
@@ -53,7 +62,17 @@ def getReferences(data):
 	elif re.search("REFERENCES",data):
 		rslt = data.split("REFERENCES")[1]
 
-	return rslt
+	# Get each line of the page
+	page = rslt.split("\n")
+
+	for line in page:
+
+		if line == "\n" or len(line) <= 15 or re.match("^[\[\]0-9\.\ \|]+$",line):
+			# print(line)
+			page.remove(line)
+
+	# .split("\n\n")[0]
+	return "\n".join(page)
 
 def getAuthors(data):
 
@@ -62,16 +81,18 @@ def getAuthors(data):
 os.system("rm *.txt")
 os.system("rm *.xml")
 
-# Delete spaces from file names
+# Delete spaces in files names
 os.system("""
 for file in *.pdf; do mv "$file" "$(echo $file | sed 's/ /_/g')"; done
 """)
 
+# List all the PDF available
 ls = "ls *.pdf"
 c = os.popen(ls).read()
 
 splitted = c.split("\n")
 
+# Read the args
 if sys.argv[1] == "-t":
     out='txt'
 elif sys.argv[1] == "-x":
@@ -80,42 +101,38 @@ else:
     print("argument incorrect") 
 
 # Convert each PDF to TXT
-for name in splitted[0:-1]:
+convertPdfToTxt(splitted)
 
-	nameRaw = name.split(".")[0]
-
-	# pdftotext -enc UTF-8 'x.pdf' 'x.txt'
-	rst = "pdftotext -enc UTF-8 '%s' '%s.%s'" % (name,nameRaw,out)
-	# print(rst)
-	os.system(rst)
-
-# Summarize
+# For each converted PDF
 for item in splitted[0:-1]:
 	
-	name = item.split(".")[0]
+	# Cut the extension and keep the name only
+	nameFile = item.split(".")[0]
 
-	txtFile = name + "." + out
-	print(txtFile)
-
-	# For each converted PDF
-	with open(txtFile, 'r') as f:
+	# Open the converted PDF
+	with open(nameFile + ".txt", 'r') as f:
 
 		data = f.read().decode('utf-8')
 
-		fileName = name
+		# Documents Informations
+		fileName = nameFile
 		title = getTitle(data)
 		author = getAuthors(data)
 		resume = getResume(data)
 		bibliographie = getReferences(data)
 
+		# If the user want to export as TXT
 		if out == "txt":
     			
+			# Create the output file
 			os.system('touch resultat.txt')
 
-			# Write in the file
+			# Write informations inside the file
 			with open("resultat.txt", 'a') as res:
 				res.write("\n")
 				res.write("File name: " + fileName)
+				res.write("\n\n")
+				res.write("Authors: " + author)
 				res.write("\n\n")
 				res.write("Title: " + title)
 				res.write("\n\n")
@@ -125,34 +142,34 @@ for item in splitted[0:-1]:
 				res.write("\n\n-------------------------------------------------------------\n")
 			res.close()
 
+		# If the user want to export as XML
 		elif out == "xml":
     			
 			root = Element('article')
 
 			preamble = SubElement(root, 'preamble')
-			preamble.text = fileName
+			preamble.text = str(fileName)
 
 			titre = SubElement(root, 'titre')
-			titre.text = title
+			titre.text = str(title)
 
 			auteur = SubElement(root, 'auteur')
-			auteur.text = author
+			auteur.text = str(author)
 
 			abstract = SubElement(root, 'abstract')
-			abstract.text = resume
+			abstract.text = str(resume)
 
 			biblio = SubElement(root, 'biblio')
-			biblio.text = bibliographie
+			biblio.text = str(bibliographie)
 
 			xml = tostring(root)
 
-			# print(xml)
-
+			# Create the output file
 			os.system('touch resultat.xml')
 
+			# Write the XML object inside
 			with open("resultat.xml", 'a') as res:
 				res.write(xml)
-				res.write("\n")
 			res.close()
 
 

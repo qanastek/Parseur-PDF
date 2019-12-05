@@ -1,7 +1,5 @@
 # Parseur-PDF
 
-## Sprint 2:
-
 ### Fonctionnement:
 
 Vous trouverez ci-dessous le fonctionnement de chaque programmes implémenté pendant le sprint 2 :
@@ -30,17 +28,4 @@ XML Output:
 user@user: python ../Sprint\ 2/Extraction_Resumé_V2.py -x
 ```
 
-
-
-## Sprint 3:
-
-### Fonctionnement:
-
-Vous trouverez ci-dessous le fonctionnement de chaque programmes implémenté pendant le sprint 3 :
-
-### Arguments du parseur:
-
-
-
-### Génération du XML:
-
+Vous trouverez par la suite un fichier **resultat.txt** ou **xml** à l'endroit où vous avez exécuté le programme.
