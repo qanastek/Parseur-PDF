@@ -117,7 +117,24 @@ def getConclusion(data):
 	return "\n".join(conclu)	
 
 def getIntroduction(data):
-	return ""
+	if re.search("Introduction",data):
+			splitted = data.split("Introduction")[1]
+	elif re.search("INTRODUCTION",data):
+		splitted = data.split("INTRODUCTION")[1]
+
+	# Get first paragraphe
+	splitted2 = splitted.split("\n\n")[0]
+
+	# Cut after Keywords
+	splitted2 = splitted2.split("\n2\n")[0]
+
+	# Replace jump line by spaces
+	splitted2 = splitted2.replace("\n"," ")
+
+	# Delete characters which aren't Alpha and Space
+	splitted3 = re.compile("^[\n2\.\n\t]*$").split(splitted2)
+	
+	return splitted3
 
 def getDiscution(data):
 	return ""
@@ -206,6 +223,8 @@ with open(nameFile + ".txt", 'r') as f:
 			res.write("Title: " + str(title))
 			res.write("\n\n")
 			res.write("Résumé: " + str(resume))
+			res.write("\n\n")
+			res.write("Introduction: " + str(introduction))
 			res.write("\n\n")
 			res.write("Conclusion: " + str(conclusion))
 			res.write("\n\n")
