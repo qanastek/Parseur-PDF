@@ -105,15 +105,17 @@ def getConclusion(data):
 	# Get each line of the page
 
 	conclu = rslt.split("\n")
-
 	# print(conclu)
-	for line in conclu:
 
-		if line == "\n" or len(line) <= 15 or re.match("^[\[\]0-9\.\ \|]+$",line) or re.match("^[0-9]+$",line):
+	i=0
+	for line in conclu:
+		if i==0 and not(re.match("([A-Z])\w+",line)):
+			conclu.remove(line)	
+		if line == "\n" or len(line) <= 15 or re.match("^[\[\]0-9\.\ \|]+$",line) or re.match("^[0-9]+$",line) or re.search(".x0c.",line):
 			# print(line)
 			conclu.remove(line)
-
-	# .split("\n\n")[0]
+		i+=1
+		# print(line)
 	return "\n".join(conclu)	
 
 def getIntroduction(data):
@@ -257,7 +259,7 @@ with open(nameFile + ".txt", 'r') as f:
 			res.write("\n\n")
 			res.write("Discution: " + str(discution))
 			res.write("\n\n")
-			res.write("Conclusion: " + str(conclusion))
+			res.write("Conclusion: \n" + str(conclusion))
 			res.write("\n\n")
 			res.write("Biblio: " + str(bibliographie))
 			res.write("\n\n")
