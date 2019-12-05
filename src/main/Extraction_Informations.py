@@ -41,6 +41,8 @@ def getResume(data):
 	# Delete characters which aren't Alpha and Space
 	splitted2 = re.sub('[^a-zA-Z ]+', '', splitted2[:5]) + splitted2[5:]
 
+	return splitted2
+
 def getTitle(data):
     	
 	return data.split('\n')[0]
@@ -73,7 +75,45 @@ def getAuthors(data):
 	return data.split('\n')[1]
 
 def getConclusion(data):
-	return ""
+
+	# Geteverything after the keyword "Conclusion"
+	if re.search("Conclusion",data):
+		rslt = data.split('Conclusion')[1]
+
+	elif re.search("CONCLUSION",data):
+		rslt = data.split("CONCLUSION")[1]
+
+	if re.search("Acknowledgments",data):
+		rslt = rslt.split("Acknowledgments")[0]
+
+	elif re.search("ACKNOWLEDGEMNTS",data):
+		rslt = rslt.split("ACKNOWLEDGMENTS")[0]
+
+	if re.search("Acknowledgements",data):
+		rslt = rslt.split("Acknowledgements")[0]
+
+	elif re.search("ACKNOWLEDGEMENTS",data):
+		rslt = rslt.split("ACKNOWLEDGEMENTS")[0]	
+
+	if re.search("References",data):
+		rslt = rslt.split("References")[0]
+
+	elif re.search("REFERENCES",data):
+		rslt = rslt.split("REFERENCES")[0]
+
+	# Get each line of the page
+
+	conclu = rslt.split("\n")
+
+	print(conclu)
+	for line in conclu:
+
+		if line == "\n" or len(line) <= 15 or re.match("^[\[\]0-9\.\ \|]+$",line) or re.match("^[0-9]+$",line):
+			print(line)
+			conclu.remove(line)
+
+	# .split("\n\n")[0]
+	return "\n".join(conclu)	
 
 def getIntroduction(data):
 	return ""
@@ -147,6 +187,8 @@ for item in splitted[0:-1]:
 				res.write("Title: " + str(title))
 				res.write("\n\n")
 				res.write("Résumé: " + str(resume))
+				res.write("\n\n")
+				res.write("Conclusion: " + str(conclusion))
 				res.write("\n\n")
 				res.write("Biblio: " + str(bibliographie))
 				res.write("\n\n-------------------------------------------------------------\n")
