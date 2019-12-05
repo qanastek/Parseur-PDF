@@ -13,13 +13,11 @@ from xml.etree.ElementTree import Element, SubElement, Comment, tostring
 if len(sys.argv) != 2:
 	sys.exit("Erreur argument manquant !")
 
-def convertPdfToTxt(splitted):
+def convertPdfToTxt(name):
     	
-	for name in splitted[0:-1]:
-		
-		nameRaw = name.split(".")[0]
-		rst = "pdftotext -enc UTF-8 '%s' '%s.txt'" % (name,nameRaw)
-		os.system(rst)
+	nameRaw = name.split(".")[0]
+	rst = "pdftotext -enc UTF-8 '%s' '%s.txt'" % (name,nameRaw)
+	os.system(rst)
 
 def getResume(data):
     	
@@ -89,8 +87,21 @@ def getCorps(data):
 
 	if len(s) <= 10:
 		s = s[s.lower().rfind(start) + len(start):s.lower().rfind('references\n')]
-		
+
 	return s
+
+def showChoices(ls):
+
+	id = 0
+
+	for item in ls[:-1]:
+		print("[%d] %s") % (id,item)
+		id += 1
+
+	print("Chosisez un document:")
+	choice = input()
+
+	return (choice, ls[choice])
 
 os.system("rm *.txt")
 os.system("rm *.xml")
@@ -114,84 +125,83 @@ elif sys.argv[1] == "-x":
 else:
     print("argument incorrect") 
 
+choice,item = showChoices(splitted)
+
 # Convert each PDF to TXT
-convertPdfToTxt(splitted)
+convertPdfToTxt(item)
 
-# For each converted PDF
-for item in splitted[0:-1]:
-	
-	# Cut the extension and keep the name only
-	nameFile = item.split(".")[0]
+# Cut the extension and keep the name only
+nameFile = item.split(".")[0]
 
-	# Open the converted PDF
-	with open(nameFile + ".txt", 'r') as f:
+# Open the converted PDF
+with open(nameFile + ".txt", 'r') as f:
 
-		data = f.read().decode('utf-8')
+	data = f.read().decode('utf-8')
 
-		# Documents Informations
-		fileName = nameFile
-		title = getTitle(data)
-		author = getAuthors(data)
-		resume = getResume(data)
-		bibliographie = getReferences(data)
-		conclusion = getConclusion(data)
-		introduction = getIntroduction(data)
-		discution = getDiscution(data)
-		corps = getCorps(data)
+	# Documents Informations
+	fileName = nameFile
+	title = getTitle(data)
+	author = getAuthors(data)
+	resume = getResume(data)
+	bibliographie = getReferences(data)
+	conclusion = getConclusion(data)
+	introduction = getIntroduction(data)
+	discution = getDiscution(data)
+	corps = getCorps(data)
 
-		# If the user want to export as TXT
-		if out == "txt":
-    			
-			# Create the output file
-			os.system('touch resultat.txt')
+	# If the user want to export as TXT
+	if out == "txt":
+			
+		# Create the output file
+		os.system('touch resultat.txt')
 
-			# Write informations inside the file
-			with open("resultat.txt", 'a') as res:
-				res.write("\n")
-				res.write("File name: " + str(fileName))
-				res.write("\n\n")
-				res.write("Authors: " + str(author))
-				res.write("\n\n")
-				res.write("Title: " + str(title))
-				res.write("\n\n")
-				res.write("Résumé: " + str(resume))
-				res.write("\n\n")
-				res.write("Biblio: " + str(bibliographie))
-				res.write("\n\n")
-				res.write("Corps:" + str(corps))
-				res.write("\n\n-------------------------------------------------------------\n")
-			res.close()
+		# Write informations inside the file
+		with open("resultat.txt", 'a') as res:
+			res.write("\n")
+			res.write("File name: " + str(fileName))
+			res.write("\n\n")
+			res.write("Authors: " + str(author))
+			res.write("\n\n")
+			res.write("Title: " + str(title))
+			res.write("\n\n")
+			res.write("Résumé: " + str(resume))
+			res.write("\n\n")
+			res.write("Biblio: " + str(bibliographie))
+			res.write("\n\n")
+			res.write("Corps:" + str(corps))
+			res.write("\n\n-------------------------------------------------------------\n")
+		res.close()
 
-		# If the user want to export as XML
-		elif out == "xml":
-    			
-			root = Element('article')
+	# If the user want to export as XML
+	elif out == "xml":
+			
+		root = Element('article')
 
-			preamble = SubElement(root, 'preamble')
-			preamble.text = str(fileName)
+		preamble = SubElement(root, 'preamble')
+		preamble.text = str(fileName)
 
-			titre = SubElement(root, 'titre')
-			titre.text = str(title)
+		titre = SubElement(root, 'titre')
+		titre.text = str(title)
 
-			auteur = SubElement(root, 'auteur')
-			auteur.text = str(author)
+		auteur = SubElement(root, 'auteur')
+		auteur.text = str(author)
 
-			abstract = SubElement(root, 'abstract')
-			abstract.text = str(resume)
+		abstract = SubElement(root, 'abstract')
+		abstract.text = str(resume)
 
-			biblio = SubElement(root, 'biblio')
-			biblio.text = str(bibliographie)
+		biblio = SubElement(root, 'biblio')
+		biblio.text = str(bibliographie)
 
-			xml = tostring(root)
+		xml = tostring(root)
 
-			# Create the output file
-			os.system('touch resultat.xml')
+		# Create the output file
+		os.system('touch resultat.xml')
 
-			# Write the XML object inside
-			with open("resultat.xml", 'a') as res:
-				res.write(xml)
-			res.close()
+		# Write the XML object inside
+		with open("resultat.xml", 'a') as res:
+			res.write(xml)
+		res.close()
 
 
-	f.close()
+f.close()
 
