@@ -19,13 +19,13 @@ Aller à la racine du repertoire où ce trouve les différents fichiers .PDF et 
 TXT Output:
 
 ```console
-user@user: python ../Sprint\ 2/Extraction_Resumé_V2.py -t
+user@user: python ../Sprint\ 3/Extraction_Informations.py -t
 ```
 
 XML Output:
 
 ```console
-user@user: python ../Sprint\ 2/Extraction_Resumé_V2.py -x
+user@user: python ../Sprint\ 3/Extraction_Informations.py -x
 ```
 
 Vous trouverez par la suite un fichier **resultat.txt** ou **xml** à l'endroit où vous avez exécuté le programme.

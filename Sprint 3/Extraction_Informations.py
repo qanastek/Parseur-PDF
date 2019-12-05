@@ -76,7 +76,7 @@ def getReferences(data):
 
 def getAuthors(data):
 
-	return data.split('\n')[1:2]
+	return data.split('\n')[1]
 
 os.system("rm *.txt")
 os.system("rm *.xml")
@@ -130,15 +130,15 @@ for item in splitted[0:-1]:
 			# Write informations inside the file
 			with open("resultat.txt", 'a') as res:
 				res.write("\n")
-				res.write("File name: " + fileName)
+				res.write("File name: " + str(fileName))
 				res.write("\n\n")
-				res.write("Authors: " + author)
+				res.write("Authors: " + str(author))
 				res.write("\n\n")
-				res.write("Title: " + title)
+				res.write("Title: " + str(title))
 				res.write("\n\n")
-				res.write("Résumé: " + resume)
+				res.write("Résumé: " + str(resume))
 				res.write("\n\n")
-				res.write("Biblio: " + bibliographie)
+				res.write("Biblio: " + str(bibliographie))
 				res.write("\n\n-------------------------------------------------------------\n")
 			res.close()
 
