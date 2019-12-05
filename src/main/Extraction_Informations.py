@@ -137,7 +137,35 @@ def getIntroduction(data):
 	return splitted3
 
 def getDiscution(data):
-	return ""
+
+	if re.search("Discussion",data):
+		if re.search("Discussion over",data):
+			rslt = data.split('Discussion')[2]
+		else:
+			rslt = data.split('Discussion')[1]
+	elif re.search("DISCUSSION",data):
+		rslt = data.split("DISCUSSION")[1]
+	else:
+		return ""
+
+	if re.search("Conclusion",rslt):
+		rslt = rslt.split("Conclusion")[0]
+
+	elif re.search("CONCLUSION",rslt):
+		rslt = rslt.split("CONCLUSION")[0]
+
+	# Get each line of the page
+	page = rslt.split("\n")
+
+
+	for line in page:
+
+		if line == "\n" or len(line) <= 15 or re.match("^[\[\]0-9\.\ \|]+$",line):
+			# print(line)
+			page.remove(line)
+
+	# .split("\n\n")[0]
+	return "\n".join(page)
 
 def getCorps(data):
 	start = 'introduction\n'
@@ -225,6 +253,8 @@ with open(nameFile + ".txt", 'r') as f:
 			res.write("Résumé: " + str(resume))
 			res.write("\n\n")
 			res.write("Introduction: " + str(introduction))
+			res.write("\n\n")
+			res.write("Discution: " + str(discution))
 			res.write("\n\n")
 			res.write("Conclusion: " + str(conclusion))
 			res.write("\n\n")
