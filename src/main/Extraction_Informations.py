@@ -128,6 +128,7 @@ def getIntroduction(data):
 	splitted2 = splitted.split("\n\n")[0]
 
 	# Cut after Keywords
+	# 2. ou II
 	splitted2 = splitted2.split("\n2\n")[0]
 
 	# Replace jump line by spaces

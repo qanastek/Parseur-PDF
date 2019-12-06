@@ -9,7 +9,7 @@ divs.forEach(function(item) {
 
     fontSize = parseInt(window.getComputedStyle(item, null).getPropertyValue('font-size'));
 
-    if (fontSize >= highestSize && item.textContent.length > 20 && item.textContent.length < 120) {
+    if (fontSize >= highestSize && item.textContent.length >17 && item.textContent.length < 120) {
 
         highestSize = fontSize;
 
@@ -19,6 +19,11 @@ divs.forEach(function(item) {
             "item": item
         });
 
+    }
+
+    if (fontSize == 14) {
+        console.log(highestSize);
+        console.log(item);        
     }
 
 });
