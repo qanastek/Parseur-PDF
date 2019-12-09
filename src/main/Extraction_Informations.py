@@ -4,6 +4,7 @@ import time
 import re
 import os
 import sys
+import numpy as np
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -200,11 +201,14 @@ def showChoices(ls):
 		id += 1
 
 	print("Veuillez saisir la liste des documents:")
-	inp = input()
-	choices=inp
+
+	choices = str(raw_input())
+	choices = np.array(choices.split(","))
+
 	rslt = []
+	
 	# For each index selected
-	for choice in choices:
+	for choice in choices.astype(int):
 
 		# If he enter a bad index
 		if (choice < len(ls) - 1):
@@ -212,6 +216,7 @@ def showChoices(ls):
 		elif (choice > len(ls) - 1):
 			print("Document inexistant !")
 			return showChoices(ls)
+			
 	return rslt
 
 os.system("rm *.txt")
