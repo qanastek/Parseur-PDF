@@ -111,7 +111,7 @@ def getConclusion(data):
 	for line in conclu:
 		if i==0 and not(re.match("([A-Z])\w+",line)):
 			del conclu[i]
-		if line == "\n" or len(line) <= 15 or re.match("^[\[\]0-9\.\ \|]+$",line) or re.match("^[0-9]+$",line) or re.search(".x0c.",line):
+		if line == "\n" or len(line) <= 15 or re.match("^[\[\]0-9\.\ \|]+$",line) or re.match("^[0-9]+$",line) or re.search(".0x0c.",line):
 			del conclu[i]
 		i+=1
 		# print(line)
@@ -123,21 +123,29 @@ def getIntroduction(data):
 			splitted = data.split("Introduction")[1]
 	elif re.search("INTRODUCTION",data):
 		splitted = data.split("INTRODUCTION")[1]
+		
+	if re.search("\nII",data):
+		splitted = splitted.split("II")[0]
+	elif re.search("\n2.",data):
+		splitted = splitted.split("\n2.")[0]
+	elif re.search("2\n\n",data):
+		splitted = splitted.split("2\n\n")[0]	
+	elif re.search("\n\n2",data):
+		splitted = splitted.split("\n\n2")[0]
+		
 
-	# Get first paragraphe
-	splitted2 = splitted.split("\n\n")[0]
+	intro = splitted.split("\n")
 
-	# Cut after Keywords
-	# 2. ou II
-	splitted2 = splitted2.split("\n2\n")[0]
-
-	# Replace jump line by spaces
-	splitted2 = splitted2.replace("\n"," ")
-
-	# Delete characters which aren't Alpha and Space
-	splitted3 = re.compile("^[\n2\.\n\t]*$").split(splitted2)[0]
+	i=0
+	for line in intro:
+		if i==0 and not(re.match("([A-Z])\w+",line)):
+			del intro[i]
+		if line == "\n" or re.match("^[\[\]0-9\.\ \|]+$",line) or re.match("^[0-9]+$",line) or re.search(".0x0c.",line):
+			del intro[i]
+		i+=1
+		# print(line)
 	
-	return splitted3
+	return "\n".join(intro)
 
 def getDiscution(data):
 
@@ -186,10 +194,9 @@ def showChoices(ls):
 		id += 1
 
 	print("Veuillez saisir la liste des documents:")
-	choices = input()
-
+	inp = input()
+	choices=inp
 	rslt = []
-
 	# For each index selected
 	for choice in choices:
 
@@ -198,8 +205,7 @@ def showChoices(ls):
 			rslt.append((choice, ls[choice]))
 		elif (choice > len(ls) - 1):
 			print("Document inexistant !")
-			showChoices(ls)
-
+			return showChoices(ls)
 	return rslt
 
 os.system("rm *.txt")
@@ -224,7 +230,7 @@ elif sys.argv[1] == "-x":
 else:
     print("argument incorrect") 
 
-# For each selected file
+# For each selected files
 for file in showChoices(splitted):
 
 	choice,item = file
@@ -259,8 +265,8 @@ for file in showChoices(splitted):
 		# conclusion = getConclusion(data)
 		conclusion = "rien"
 
-		# introduction = getIntroduction(data)
-		introduction = "rien"
+		introduction = getIntroduction(data)
+		# introduction = "rien"
 
 		# discution = getDiscution(data)
 		discution = "rien"
@@ -314,6 +320,12 @@ for file in showChoices(splitted):
 
 			abstract = SubElement(root, 'abstract')
 			abstract.text = str(resume)
+
+			abstract = SubElement(root, 'intro')
+			abstract.text = str(introduction)
+
+			abstract = SubElement(root, 'conclusion')
+			abstract.text = str(conclusion)
 
 			biblio = SubElement(root, 'biblio')
 			biblio.text = str(bibliographie)
