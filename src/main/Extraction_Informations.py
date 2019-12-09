@@ -125,13 +125,15 @@ def getIntroduction(data):
 	elif re.search("INTRODUCTION",data):
 		splitted = data.split("INTRODUCTION")[1]
 		
+	
+
 	if re.search("\nII",data):
 		splitted = splitted.split("II")[0]
-	elif re.search("\n2.",data):
-		splitted = splitted.split("\n2.")[0]
-	elif re.search("2\n\n",data):
+	# if re.search("\n2.",data):
+	# 	splitted = splitted.split("\n2.")[0]
+	if re.search("2\n\n",data):
 		splitted = splitted.split("2\n\n")[0]	
-	elif re.search("\n\n2",data):
+	if re.search("\n\n2",data):
 		splitted = splitted.split("\n\n2")[0]
 		
 
