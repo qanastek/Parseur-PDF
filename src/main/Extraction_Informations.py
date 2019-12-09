@@ -141,13 +141,18 @@ def getIntroduction(data):
 
 def getDiscution(data):
 
-	if re.search("Discussion",data):
-		if re.search("Discussion over",data):
-			rslt = data.split('Discussion')[2]
-		else:
-			rslt = data.split('Discussion')[1]
+	if re.search("Discussion\n",data):
+
+		rslt = data.split('Discussion\n')[1]
+
 	elif re.search("DISCUSSION",data):
+
 		rslt = data.split("DISCUSSION")[1]
+
+	elif re.search("Discussion:",data):
+
+		rslt = data.split("Discussion:")[1]
+
 	else:
 		return ""
 
@@ -159,6 +164,7 @@ def getDiscution(data):
 
 	# Get each line of the page
 	page = rslt.split("\n")
+
 
 	for line in page:
 
@@ -244,29 +250,21 @@ for file in showChoices(splitted):
 
 		fileName = nameFile
 
-		# title = getTitle(data)
-		title = "rien"
+		title = getTitle(data)
 
-		# author = getAuthors(data)
-		author = "rien"
+		author = getAuthors(data)
 
-		# resume = getResume(data)
-		resume = "rien"
+		resume = getResume(data)
 
-		# bibliographie = getReferences(data)
-		bibliographie = "Rien"
+		bibliographie = getReferences(data)
 
-		# conclusion = getConclusion(data)
-		conclusion = "rien"
+		conclusion = getConclusion(data)
 
-		# introduction = getIntroduction(data)
-		introduction = "rien"
+		introduction = getIntroduction(data)
 
-		# discution = getDiscution(data)
-		discution = "rien"
+		discution = getDiscution(data)
 
 		corps = getCorps(data)
-		# corps = "rien"
 
 		# If the user want to export as TXT
 		if out == "txt":
