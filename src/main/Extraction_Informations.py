@@ -46,22 +46,23 @@ def getTitle(data):
 	return data.split('\n')[0]
 
 def getReferences(data):
-
-	if re.search("references",data):
-		rslt = data.split('references')[1]
-
-	elif re.search("References",data):
-		rslt = data.split("References")[1]
+    
+	if re.search("References\n",data):
+		if re.search("So far, we only",data):
+			rslt = data.split("References\n")[2]
+		else:
+			rslt = data.split("References\n")[1]
 
 	elif re.search("REFERENCES",data):
 		rslt = data.split("REFERENCES")[1]
-
+		if re.search("IEEE TRANSACTIONS",rslt):
+			rslt = rslt.split("IEEE TRANSACTIONS")[0]
 	# Get each line of the page
 	page = rslt.split("\n")
 
 	for line in page:
 
-		if line == "\n" or len(line) <= 15 or re.match("^[\[\]0-9\.\ \|]+$",line):
+		if line == "\n" or len(line) <= 15 or re.match("^[\[\]0-9\.\ \|]+$",line) or re.match("",line):
 			# print(line)
 			page.remove(line)
 
@@ -125,8 +126,6 @@ def getIntroduction(data):
 	elif re.search("INTRODUCTION",data):
 		splitted = data.split("INTRODUCTION")[1]
 		
-	
-
 	if re.search("\nII",data):
 		splitted = splitted.split("II")[0]
 	# if re.search("\n2.",data):
@@ -327,11 +326,17 @@ for file in showChoices(splitted):
 			abstract = SubElement(root, 'abstract')
 			abstract.text = str(resume)
 
-			abstract = SubElement(root, 'intro')
+			abstract = SubElement(root, 'introduction')
 			abstract.text = str(introduction)
+
+			abstract = SubElement(root, 'corps')
+			abstract.text = str(corps)
 
 			abstract = SubElement(root, 'conclusion')
 			abstract.text = str(conclusion)
+
+			abstract = SubElement(root, 'discussion')
+			abstract.text = str(discution)
 
 			biblio = SubElement(root, 'biblio')
 			biblio.text = str(bibliographie)
@@ -344,7 +349,9 @@ for file in showChoices(splitted):
 			# Write the XML object inside
 			with open("resultat.xml", 'a') as res:
 				res.write(xml)
+
 			res.close()
 
-
 	f.close()
+
+os.system("rm *.html")
