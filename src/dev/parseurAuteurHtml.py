@@ -4,18 +4,16 @@ import os
 
 
 
+file = "test.html"
 
-
-
-
-file = "../../corpus/Lin_2004_Rouge.html"
-
-htmlData = open(file, 'r')
+htmlData = open(file,encoding="utf8")
 
 soup = BeautifulSoup(htmlData, "html.parser")
 
-font_spans = [ data for data in soup.select('span') if 'font-size:12px' in str(data) ]
+font_spans = soup.find_all("span", attrs={"style":re.compile("font-size:1[1-3]px")})
 
 
-
-print( font_spans )
+if(font_spans and font_spans!=[]):
+	print( font_spans[0].text,font_spans[1].text,font_spans[2].text )
+else:
+	print(soup.find_all("span")[3:6].text)
