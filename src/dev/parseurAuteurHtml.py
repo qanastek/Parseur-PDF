@@ -6,13 +6,24 @@ from io import open
 
 file = "Alexandrov_2015_A_Modified_Tripartite_Model_for_Document_Representation_in_Internet_Sociology.html"
 
-htmlData = open(file,encoding="utf-8")
+data=open(file,"r",encoding='utf8')
 
-soup = BeautifulSoup(htmlData, "html.parser")
+def getAuthors(data):
 
-font_spans = soup.find_all("span", attrs={"style":re.compile("font-size:1[1-3]px")})
 
-if(font_spans and font_spans!=[]):
-	print(font_spans[0].text + font_spans[1].text + font_spans[2].text)
-else:
-	print(soup.find_all("span")[3:6].text)
+
+	soup = BeautifulSoup(data, "html.parser")
+
+	font_spans = soup.find_all("span", attrs={"style":re.compile("font-size:1[1-3]px")})
+	rslt = ""
+
+	if(font_spans != [] ):
+		rslt = font_spans[0].text + font_spans[1].text + font_spans[2].text
+		print("1: " + str(rslt))
+	else:
+		for r in soup.find_all("span")[3:6] :
+			rslt += r.text
+		print("2: " + str(rslt))
+	return rslt
+
+print(getAuthors(data))
