@@ -21,6 +21,19 @@ def convertPdfToTxt(name):
 	rst = "pdftotext -enc UTF-8 '%s' '%s.txt'" % (name,nameRaw)
 	os.system(rst)
 
+def convertPdfToHtml():
+    	
+	c=os.popen('ls *.pdf').read()
+
+	os.system('rm *.html')
+
+	splitted = c.split("\n")
+
+	for item in splitted[0:len(splitted)-1]:
+		name = item.split(".")[0]
+		query = "pdf2txt -t html -o %s.html %s.pdf" % (name,name)
+		os.system(query)
+
 def getResume(data):
     	
 	if re.search("Abstract",data):
@@ -71,6 +84,8 @@ def getReferences(data):
 	return "\n".join(page)
 
 def getAuthors(data):
+	
+	data = open(nameFile + ".html","r")
 	soup = BeautifulSoup(data, "html.parser")
 
 	font_spans = soup.find_all("span", attrs={"style":re.compile("font-size:1[1-3]px")})
@@ -247,6 +262,8 @@ c = os.popen(ls).read()
 
 splitted = c.split("\n")
 
+convertPdfToHtml()
+
 # Read the args
 if sys.argv[1] == "-t":
     out='txt'
@@ -277,7 +294,7 @@ for file in showChoices(splitted):
 
 		title = getTitle(data)
 
-		author = getAuthors(data)
+		author = getAuthors(nameFile)
 
 		resume = getResume(data)
 

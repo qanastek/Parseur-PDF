@@ -10,8 +10,6 @@ data=open(file,"r",encoding='utf8')
 
 def getAuthors(data):
 
-
-
 	soup = BeautifulSoup(data, "html.parser")
 
 	font_spans = soup.find_all("span", attrs={"style":re.compile("font-size:1[1-3]px")})
@@ -19,11 +17,10 @@ def getAuthors(data):
 
 	if(font_spans != [] ):
 		rslt = font_spans[0].text + font_spans[1].text + font_spans[2].text
-		print("1: " + str(rslt))
 	else:
 		for r in soup.find_all("span")[3:6] :
 			rslt += r.text
-		print("2: " + str(rslt))
-	return rslt
+			
+	return str(rslt)
 
 print(getAuthors(data))
