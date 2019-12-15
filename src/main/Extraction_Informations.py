@@ -5,6 +5,7 @@ import re
 import os
 import sys
 import numpy as np
+from bs4 import BeautifulSoup
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -71,7 +72,20 @@ def getReferences(data):
 
 def getAuthors(data):
 
-	return data.split('\n')[1]
+	soup = BeautifulSoup(data, "html.parser")
+
+	font_spans = soup.find_all("span", attrs={"style":re.compile("font-size:1[1-3]px")})
+	rslt = ""
+
+	if(font_spans and font_spans != []):
+		rslt = font_spans[0].text + font_spans[1].text + font_spans[2].text
+		print("1: " + str(rslt))
+	else:
+		for r in soup.find_all("span")[3:6]:
+			rslt = rslt + r.text
+		print("2: " + str(rslt))
+	return rslt
+	# return data.split('\n')[1]
 
 def getConclusion(data):
 
