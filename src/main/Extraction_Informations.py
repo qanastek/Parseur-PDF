@@ -106,14 +106,9 @@ def getAuthors(data):
 
 
 def getConclusion(data):
-
 	# Get everything after the keyword "Conclusion"
 	if re.search("Conclusion",data):
-
-		if data.count("Conclusion")>1:
-			rslt = data.split('Conclusion')[2]
-		else:
-			rslt = data.split('Conclusion')[1]
+		slt = data.split('Conclusion')[1]
 
 	elif re.search("CONCLUSION",data):
 		rslt = data.split("CONCLUSION")[1]
