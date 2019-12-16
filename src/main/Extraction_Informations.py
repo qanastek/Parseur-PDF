@@ -21,18 +21,16 @@ def convertPdfToTxt(name):
 	rst = "pdftotext -enc UTF-8 '%s' '%s.txt'" % (name,nameRaw)
 	os.system(rst)
 
-def convertPdfToHtml():
-    	
-	c=os.popen('ls *.pdf').read()
+def convertPdfToHtml(item):
 
-	os.system('rm *.html')
+	name = str(item.split(".")[0])
 
-	splitted = c.split("\n")
+	print("Convert " + name + " to HTML")
 
-	for item in splitted[0:len(splitted)-1]:
-		name = item.split(".")[0]
-		query = "pdf2txt -t html -o %s.html %s.pdf" % (name,name)
-		os.system(query)
+	os.system('rm %s.html' % (name) )
+
+	query = "pdf2txt -t html -o %s.html %s.pdf" % (name,name)
+	os.system(query)
 
 def getResume(data):
     	
@@ -106,6 +104,7 @@ def getAuthors(data):
 
 
 def getConclusion(data):
+
 	# Get everything after the keyword "Conclusion"
 	if re.search("Conclusion",data):
 		rslt = data.split('Conclusion')[1]
@@ -143,7 +142,6 @@ def getConclusion(data):
 	i=0
 	if (conclu!=[]):
 		for line in conclu:
-			print (line)
 			if i==0 and not(re.match("([A-Z])\w+",line)):
 				del conclu[i]
 			if line == "\n" or len(line) <= 15 or re.match("^[\[\]0-9\.\ \|]+$",line) or re.match("^[0-9]+$",line) or re.search(".0x0c.",line):
@@ -267,8 +265,6 @@ c = os.popen(ls).read()
 
 splitted = c.split("\n")
 
-convertPdfToHtml()
-
 # Read the args
 if sys.argv[1] == "-t":
     out='txt'
@@ -290,6 +286,8 @@ for file in showChoices(splitted):
 
 	# Open the converted PDF
 	with open(nameFile + ".txt", 'r') as f:
+
+		convertPdfToHtml(item)
 
 		data = f.read().decode('utf-8')
 
