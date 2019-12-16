@@ -5,6 +5,7 @@ import re
 import os
 import sys
 import numpy as np
+from bs4 import BeautifulSoup
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -19,6 +20,19 @@ def convertPdfToTxt(name):
 	nameRaw = name.split(".")[0]
 	rst = "pdftotext -enc UTF-8 '%s' '%s.txt'" % (name,nameRaw)
 	os.system(rst)
+
+def convertPdfToHtml():
+    	
+	c=os.popen('ls *.pdf').read()
+
+	os.system('rm *.html')
+
+	splitted = c.split("\n")
+
+	for item in splitted[0:len(splitted)-1]:
+		name = item.split(".")[0]
+		query = "pdf2txt -t html -o %s.html %s.pdf" % (name,name)
+		os.system(query)
 
 def getResume(data):
     	
@@ -46,22 +60,23 @@ def getTitle(data):
 	return data.split('\n')[0]
 
 def getReferences(data):
-
-	if re.search("references",data):
-		rslt = data.split('references')[1]
-
-	elif re.search("References",data):
-		rslt = data.split("References")[1]
+    
+	if re.search("References\n",data):
+		if re.search("So far, we only",data):
+			rslt = data.split("References\n")[2]
+		else:
+			rslt = data.split("References\n")[1]
 
 	elif re.search("REFERENCES",data):
 		rslt = data.split("REFERENCES")[1]
-
+		if re.search("IEEE TRANSACTIONS",rslt):
+			rslt = rslt.split("IEEE TRANSACTIONS")[0]
 	# Get each line of the page
 	page = rslt.split("\n")
 
 	for line in page:
 
-		if line == "\n" or len(line) <= 15 or re.match("^[\[\]0-9\.\ \|]+$",line):
+		if line == "\n" or len(line) <= 15 or re.match("^[\[\]0-9\.\ \|]+$",line) or re.match("",line):
 			# print(line)
 			page.remove(line)
 
@@ -69,8 +84,22 @@ def getReferences(data):
 	return "\n".join(page)
 
 def getAuthors(data):
+	
+	data = open(nameFile + ".html","r")
+	soup = BeautifulSoup(data, "html.parser")
 
-	return data.split('\n')[1]
+	font_spans = soup.find_all("span", attrs={"style":re.compile("font-size:1[1-3]px")})
+	rslt = ""
+
+	if(font_spans != [] ):
+		rslt = font_spans[0].text + font_spans[1].text + font_spans[2].text
+		print("1: " + str(rslt))
+	else:
+		for r in soup.find_all("span")[3:6] :
+			rslt += r.text
+		print("2: " + str(rslt))
+	return rslt
+	# return data.split('\n')[1]
 
 def getConclusion(data):
 
@@ -127,11 +156,11 @@ def getIntroduction(data):
 		
 	if re.search("\nII",data):
 		splitted = splitted.split("II")[0]
-	elif re.search("\n2.",data):
-		splitted = splitted.split("\n2.")[0]
-	elif re.search("2\n\n",data):
+	# if re.search("\n2.",data):
+	# 	splitted = splitted.split("\n2.")[0]
+	if re.search("2\n\n",data):
 		splitted = splitted.split("2\n\n")[0]	
-	elif re.search("\n\n2",data):
+	if re.search("\n\n2",data):
 		splitted = splitted.split("\n\n2")[0]
 		
 
@@ -233,6 +262,8 @@ c = os.popen(ls).read()
 
 splitted = c.split("\n")
 
+convertPdfToHtml()
+
 # Read the args
 if sys.argv[1] == "-t":
     out='txt'
@@ -263,7 +294,7 @@ for file in showChoices(splitted):
 
 		title = getTitle(data)
 
-		author = getAuthors(data)
+		author = getAuthors(nameFile)
 
 		resume = getResume(data)
 
@@ -325,11 +356,17 @@ for file in showChoices(splitted):
 			abstract = SubElement(root, 'abstract')
 			abstract.text = str(resume)
 
-			abstract = SubElement(root, 'intro')
+			abstract = SubElement(root, 'introduction')
 			abstract.text = str(introduction)
+
+			abstract = SubElement(root, 'corps')
+			abstract.text = str(corps)
 
 			abstract = SubElement(root, 'conclusion')
 			abstract.text = str(conclusion)
+
+			abstract = SubElement(root, 'discussion')
+			abstract.text = str(discution)
 
 			biblio = SubElement(root, 'biblio')
 			biblio.text = str(bibliographie)
@@ -342,7 +379,9 @@ for file in showChoices(splitted):
 			# Write the XML object inside
 			with open("resultat.xml", 'a') as res:
 				res.write(xml)
+
 			res.close()
 
-
 	f.close()
+
+os.system("rm *.html")
