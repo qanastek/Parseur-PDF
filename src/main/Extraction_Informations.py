@@ -92,14 +92,18 @@ def getAuthors(data):
 	rslt = ""
 
 	if(font_spans != [] ):
-		rslt = font_spans[0].text + font_spans[1].text + font_spans[2].text
-		print("1: " + str(rslt))
+		for i in range(len(font_spans)):
+			print(font_spans[i].text)
+			rslt+= font_spans[i].text
+		# rslt = font_spans[0].text + font_spans[1].text + font_spans[2].text
+		# print("1: " + str(rslt))
 	else:
 		for r in soup.find_all("span")[3:6] :
 			rslt += r.text
-		print("2: " + str(rslt))
+		# print("2: " + str(rslt))
+	rslt=rslt.split('\n')[0]
+	print (rslt)
 	return rslt
-	# return data.split('\n')[1]
 
 def getConclusion(data):
 
