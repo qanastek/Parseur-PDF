@@ -16,6 +16,11 @@ if len(sys.argv) != 2:
 	sys.exit("Erreur argument manquant !")
 
 def convertPdfToTxt(name):
+
+	# 
+	# Gerer l'execption du doc chelou avec un try catch
+	# 
+	# 
     	
 	nameRaw = name.split(".")[0]
 	rst = "pdftotext -enc UTF-8 '%s' '%s.txt'" % (name,nameRaw)
