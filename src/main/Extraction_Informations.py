@@ -84,7 +84,6 @@ def getReferences(data):
 	return "\n".join(page)
 
 def getAuthors(data):
-	
 	data = open(nameFile + ".html","r")
 	soup = BeautifulSoup(data, "html.parser")
 
@@ -93,7 +92,7 @@ def getAuthors(data):
 
 	if(font_spans != [] ):
 		for i in range(len(font_spans)):
-			print(font_spans[i].text)
+			# print(font_spans[i].text)
 			rslt+= font_spans[i].text
 		# rslt = font_spans[0].text + font_spans[1].text + font_spans[2].text
 		# print("1: " + str(rslt))
@@ -102,8 +101,9 @@ def getAuthors(data):
 			rslt += r.text
 		# print("2: " + str(rslt))
 	rslt=rslt.split('\n')[0]
-	print (rslt)
+	# print (rslt)
 	return rslt
+
 
 def getConclusion(data):
 
