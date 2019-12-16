@@ -108,10 +108,14 @@ def getAuthors(data):
 def getConclusion(data):
 	# Get everything after the keyword "Conclusion"
 	if re.search("Conclusion",data):
-		slt = data.split('Conclusion')[1]
+		rslt = data.split('Conclusion')[1]
 
 	elif re.search("CONCLUSION",data):
 		rslt = data.split("CONCLUSION")[1]
+
+	else :
+		rslt=""	
+		return rslt
 
 	if re.search("Acknowledgments",data):
 		rslt = rslt.split("Acknowledgments")[0]
@@ -137,13 +141,15 @@ def getConclusion(data):
 	# print(conclu)
 
 	i=0
-	for line in conclu:
-		if i==0 and not(re.match("([A-Z])\w+",line)):
-			del conclu[i]
-		if line == "\n" or len(line) <= 15 or re.match("^[\[\]0-9\.\ \|]+$",line) or re.match("^[0-9]+$",line) or re.search(".0x0c.",line):
-			del conclu[i]
-		i+=1
-		# print(line)
+	if (conclu!=[]):
+		for line in conclu:
+			print (line)
+			if i==0 and not(re.match("([A-Z])\w+",line)):
+				del conclu[i]
+			if line == "\n" or len(line) <= 15 or re.match("^[\[\]0-9\.\ \|]+$",line) or re.match("^[0-9]+$",line) or re.search(".0x0c.",line):
+				del conclu[i]
+			i+=1
+		# print(line)	
 	return "\n".join(conclu)	
 
 def getIntroduction(data):
