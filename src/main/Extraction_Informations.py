@@ -32,13 +32,15 @@ def convertPdfToHtml(item):
 
 	print("Convert " + name + " to HTML")
 
-	os.system('rm %s.html' % (name) )
+	os.system('rm -f %s.html' % (name) )
 
 	query = "pdf2txt -t html -o %s.html %s.pdf" % (name,name)
 	os.system(query)
 
 def getResume(data):
     	
+	splitted = ""
+
 	if re.search("Abstract",data):
 		splitted = data.split("Abstract")[1]
 	elif re.search("ABSTRACT",data):
@@ -157,8 +159,10 @@ def getConclusion(data):
 
 def getIntroduction(data):
 	
+	splitted = ""
+
 	if re.search("Introduction",data):
-			splitted = data.split("Introduction")[1]
+		splitted = data.split("Introduction")[1]
 	elif re.search("INTRODUCTION",data):
 		splitted = data.split("INTRODUCTION")[1]
 		
@@ -256,8 +260,8 @@ def showChoices(ls):
 			
 	return rslt
 
-os.system("rm *.txt")
-os.system("rm *.xml")
+os.system("rm -f *.txt")
+os.system("rm -f *.xml")
 
 # Delete spaces in files names
 os.system("""
@@ -289,107 +293,116 @@ for file in showChoices(splitted):
 	# Cut the extension and keep the name only
 	nameFile = item.split(".")[0]
 
-	# Open the converted PDF
-	with open(nameFile + ".txt", 'r') as f:
+	try:
 
-		convertPdfToHtml(item)
+		# Open the converted PDF
+		with open(nameFile + ".txt", 'r') as f:
 
-		data = f.read().decode('utf-8')
+			convertPdfToHtml(item)
 
-		# Documents Informations
+			data = f.read().decode('utf-8')
 
-		fileName = nameFile
+			# Documents Informations
 
-		title = getTitle(data)
+			fileName = nameFile
 
-		author = getAuthors(nameFile)
+			title = getTitle(data)
 
-		resume = getResume(data)
+			author = getAuthors(nameFile)
 
-		bibliographie = getReferences(data)
+			resume = getResume(data)
 
-		conclusion = getConclusion(data)
+			bibliographie = getReferences(data)
 
-		introduction = getIntroduction(data)
-		# introduction = "rien"
+			conclusion = getConclusion(data)
 
-		discution = getDiscution(data)
+			introduction = getIntroduction(data)
+			# introduction = "rien"
 
-		corps = getCorps(data)
+			discution = getDiscution(data)
 
-		# If the user want to export as TXT
-		if out == "txt":
-				
-			# Create the output file
-			os.system('touch resultat.txt')
+			corps = getCorps(data)
 
-			# Write informations inside the file
-			with open("resultat.txt", 'a') as res:
-				res.write("\n")
-				res.write("File name: " + str(fileName))
-				res.write("\n\n")
-				res.write("Authors: " + str(author))
-				res.write("\n\n")
-				res.write("Title: " + str(title))
-				res.write("\n\n")
-				res.write("Résumé: " + str(resume))
-				res.write("\n\n")
-				res.write("Introduction: " + str(introduction))
-				res.write("\n\n")
-				res.write("Corps:" + str(corps))
-				res.write("\n\n")
-				res.write("Discution: " + str(discution))
-				res.write("\n\n")
-				res.write("Conclusion: \n" + str(conclusion))
-				res.write("\n\n")
-				res.write("Biblio: " + str(bibliographie))
-				res.write("\n\n")
-				res.write("\n\n-------------------------------------------------------------\n")
-			res.close()
+			# If the user want to export as TXT
+			if out == "txt":
+					
+				# Create the output file
+				os.system('touch resultat.txt')
 
-		# If the user want to export as XML
-		elif out == "xml":
-				
-			root = Element('article')
+				# Write informations inside the file
+				with open("resultat.txt", 'a') as res:
+					res.write("\n")
+					res.write("File name: " + str(fileName))
+					res.write("\n\n")
+					res.write("Authors: " + str(author))
+					res.write("\n\n")
+					res.write("Title: " + str(title))
+					res.write("\n\n")
+					res.write("Résumé: " + str(resume))
+					# res.write("\n\n")
+					# res.write("Introduction: " + str(introduction))
+					# res.write("\n\n")
+					# res.write("Corps:" + str(corps))
+					# res.write("\n\n")
+					# res.write("Discution: " + str(discution))
+					# res.write("\n\n")
+					# res.write("Conclusion: \n" + str(conclusion))
+					# res.write("\n\n")
+					# res.write("Biblio: " + str(bibliographie))
+					# res.write("\n\n")
+					res.write("\n\n-------------------------------------------------------------\n")
+				res.close()
 
-			preamble = SubElement(root, 'preamble')
-			preamble.text = str(fileName)
+			# If the user want to export as XML
+			elif out == "xml":
+					
+				root = Element('article')
 
-			titre = SubElement(root, 'titre')
-			titre.text = str(title)
+				preamble = SubElement(root, 'preamble')
+				preamble.text = str(fileName)
 
-			auteur = SubElement(root, 'auteur')
-			auteur.text = str(author)
+				titre = SubElement(root, 'titre')
+				titre.text = str(title)
 
-			abstract = SubElement(root, 'abstract')
-			abstract.text = str(resume)
+				auteur = SubElement(root, 'auteur')
+				auteur.text = str(author)
 
-			abstract = SubElement(root, 'introduction')
-			abstract.text = str(introduction)
+				abstract = SubElement(root, 'abstract')
+				abstract.text = str(resume)
 
-			abstract = SubElement(root, 'corps')
-			abstract.text = str(corps)
+				abstract = SubElement(root, 'introduction')
+				abstract.text = str(introduction)
 
-			abstract = SubElement(root, 'conclusion')
-			abstract.text = str(conclusion)
+				abstract = SubElement(root, 'corps')
+				abstract.text = str(corps)
 
-			abstract = SubElement(root, 'discussion')
-			abstract.text = str(discution)
+				abstract = SubElement(root, 'conclusion')
+				abstract.text = str(conclusion)
 
-			biblio = SubElement(root, 'biblio')
-			biblio.text = str(bibliographie)
+				abstract = SubElement(root, 'discussion')
+				abstract.text = str(discution)
 
-			xml = tostring(root)
+				biblio = SubElement(root, 'biblio')
+				biblio.text = str(bibliographie)
 
-			# Create the output file
-			os.system('touch resultat.xml')
+				xml = tostring(root)
 
-			# Write the XML object inside
-			with open("resultat.xml", 'a') as res:
-				res.write(xml)
+				# Create the output file
+				os.system('touch resultat.xml')
 
-			res.close()
+				# Write the XML object inside
+				with open("resultat.xml", 'a') as res:
+					res.write(xml)
 
-	f.close()
+				res.close()
 
-os.system("rm *.html")
+		f.close()
+
+	except:
+ 		print(nameFile + ".txt n'a pas pu être convertie !")
+
+os.system("rm -f *.html")
+
+print("#####################################")
+print("####### Conversion réussite ! #######")
+print("#####################################")
