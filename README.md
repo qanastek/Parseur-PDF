@@ -33,3 +33,9 @@ user@user: python ../src/main/Extraction_Informations.py -x
 ```
 
 Vous trouverez par la suite un fichier **resultat.txt** ou **xml** à l'endroit où vous avez exécuté le programme.
+
+### Dépendences
+
+* Python 2.7+ [Télécharger](https://www.python.org/download/releases/2.7/)
+* Beautiful Soup 4 [Télécharger](https://pypi.org/project/beautifulsoup4/)
+* Numpy [Télécharger](https://pypi.org/project/numpy/)
