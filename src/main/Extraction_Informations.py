@@ -60,9 +60,55 @@ def getResume(data):
 
 	return splitted2
 
-def getTitle(data):
-    	
-	return data.split('\n')[0]
+def getTitle(txtFile, title):
+    
+	data = open(title + ".html","r")
+	# print("getTitle for " + nameFile + ".html")
+	soup = BeautifulSoup(data, "html.parser")
+
+	spans = soup.find_all("span")
+	highestItem = []
+	highestSize = 0
+	fontSize = 0
+	content = ""
+	
+	if len(spans) <= 0:
+		return "No title found"
+	else:
+		for span in spans:
+      
+			s = str(span["style"])
+			start = "font-size:"
+			end = "px;"
+			if s.find(start) >= 0:
+				fontSize = s[s.find(start)+len(start):s.rfind(end)-1]
+				# print("style : ")
+				fontSize = int(fontSize)
+				content = span.text
+				# print(content + " : " + str(fontSize))
+				# print("-----")
+
+				if (fontSize >= 10 and fontSize <= 35 and len(content) > 8):
+					highestItem.append((fontSize,content));
+
+    	if len(highestItem) > 0:
+			highestItem.sort(key=lambda x: x[0], reverse=True)
+		
+			noDuplicated = list(set(highestItem))
+			highestSize = highestItem[0][0]
+			res = ""
+		
+			for elem in noDuplicated:
+				if elem[0] == highestSize:
+					res += elem[1]
+		
+			res = res.replace('\n', ' ')
+			if res.find('(cid:') >= 0:
+				res = txtFile.split("\n")[0] 
+			print("----------------" + res)
+			return res
+   
+   	return "Empty"
 
 def getReferences(data):
     
@@ -89,7 +135,7 @@ def getReferences(data):
 	return "\n".join(page)
 
 def getAuthors(data):
-	data = open(nameFile + ".html","r")
+	data = open(data + ".html","r")
 	soup = BeautifulSoup(data, "html.parser")
 
 	font_spans = soup.find_all("span", attrs={"style":re.compile("font-size:1[1-3]px")})
@@ -306,7 +352,7 @@ for file in showChoices(splitted):
 
 			fileName = nameFile
 
-			title = getTitle(data)
+			title = getTitle(data, nameFile)
 
 			author = getAuthors(nameFile)
 
@@ -398,8 +444,9 @@ for file in showChoices(splitted):
 
 		f.close()
 
-	except:
+	except Exception as e:
  		print(nameFile + ".txt n'a pas pu être convertie !")
+ 		print(e)
 
 os.system("rm -f *.html")
 
