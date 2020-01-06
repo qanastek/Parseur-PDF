@@ -16,11 +16,6 @@ if len(sys.argv) != 2:
 	sys.exit("Erreur argument manquant !")
 
 def convertPdfToTxt(name):
-
-	# 
-	# Gerer l'execption du doc chelou avec un try catch
-	# 
-	# 
     	
 	nameRaw = name.split(".")[0]
 	rst = "pdftotext -enc UTF-8 '%s' '%s.txt'" % (name,nameRaw)
@@ -385,17 +380,17 @@ for file in showChoices(splitted):
 					res.write("Title: " + str(title))
 					res.write("\n\n")
 					res.write("Résumé: " + str(resume))
-					# res.write("\n\n")
-					# res.write("Introduction: " + str(introduction))
-					# res.write("\n\n")
-					# res.write("Corps:" + str(corps))
-					# res.write("\n\n")
-					# res.write("Discution: " + str(discution))
-					# res.write("\n\n")
-					# res.write("Conclusion: \n" + str(conclusion))
-					# res.write("\n\n")
-					# res.write("Biblio: " + str(bibliographie))
-					# res.write("\n\n")
+					res.write("\n\n")
+					res.write("Introduction: " + str(introduction))
+					res.write("\n\n")
+					res.write("Corps:" + str(corps))
+					res.write("\n\n")
+					res.write("Discution: " + str(discution))
+					res.write("\n\n")
+					res.write("Conclusion: \n" + str(conclusion))
+					res.write("\n\n")
+					res.write("Biblio: " + str(bibliographie))
+					res.write("\n\n")
 					res.write("\n\n-------------------------------------------------------------\n")
 				res.close()
 
