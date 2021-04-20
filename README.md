@@ -36,6 +36,24 @@ Vous trouverez par la suite un fichier **resultat.txt** ou **xml** à l'endroit 
 
 ### Dépendences
 
+__Linux__:
+
+```bash
+xargs sudo apt-get install -y <packages.txt
+```
+
+ou
+
+```bash
+sudo apt install -y python3-pdfminer
+```
+
+__Python__:
+
+```bash
+pip install -r requirements.txt
+```
+
 * Python 2.7+ [Télécharger](https://www.python.org/download/releases/2.7/)
 * Beautiful Soup 4 [Télécharger](https://pypi.org/project/beautifulsoup4/)
 * Numpy [Télécharger](https://pypi.org/project/numpy/)

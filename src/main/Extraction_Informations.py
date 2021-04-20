@@ -4,11 +4,13 @@ import time
 import re
 import os
 import sys
+
 import numpy as np
 from bs4 import BeautifulSoup
 
-reload(sys)
-sys.setdefaultencoding('utf-8')
+# reload(sys)
+# sys.setdefaultencoding('utf-8')
+# sys.path.append("/usr/bin/pdf2txt")
 
 from xml.etree.ElementTree import Element, SubElement, Comment, tostring
 
@@ -18,7 +20,7 @@ if len(sys.argv) != 2:
 def convertPdfToTxt(name):
     	
 	nameRaw = name.split(".")[0]
-	rst = "pdftotext -enc UTF-8 '%s' '%s.txt'" % (name,nameRaw)
+	rst = "pdftotext -enc UTF-8 '{}' '{}.txt'".format(name,nameRaw)
 	os.system(rst)
 
 def convertPdfToHtml(item):
@@ -27,9 +29,9 @@ def convertPdfToHtml(item):
 
 	print("Convert " + name + " to HTML")
 
-	os.system('rm -f %s.html' % (name) )
+	os.system('rm -f {}.html'.format(name))
 
-	query = "pdf2txt -t html -o %s.html %s.pdf" % (name,name)
+	query = "pdf2txt -t html -o {}.html {}.pdf".format(name,name)
 	os.system(query)
 
 def getResume(data):
@@ -86,7 +88,7 @@ def getTitle(txtFile, title):
 				if (fontSize >= 10 and fontSize <= 35 and len(content) > 8):
 					highestItem.append((fontSize,content));
 
-    	if len(highestItem) > 0:
+		if len(highestItem) > 0:
 			highestItem.sort(key=lambda x: x[0], reverse=True)
 		
 			noDuplicated = list(set(highestItem))
@@ -103,7 +105,7 @@ def getTitle(txtFile, title):
 			print("----------------" + res)
 			return res
    
-   	return "Empty"
+	return "Empty"
 
 def getReferences(data):
     
@@ -279,12 +281,12 @@ def showChoices(ls):
 
 	id = 0
 	for item in ls[:-1]:
-		print("[%d] %s") % (id,item)
+		print("[{}] {}".format(str(id),item))
 		id += 1
 
 	print("Veuillez saisir la liste des documents:")
 
-	choices = str(raw_input())
+	choices = str(input())
 	choices = np.array(choices.split(","))
 
 	rslt = []
@@ -341,7 +343,8 @@ for file in showChoices(splitted):
 
 			convertPdfToHtml(item)
 
-			data = f.read().decode('utf-8')
+			data = f.read()
+			# data = f.read().decode('utf-8')
 
 			# Documents Informations
 
@@ -443,7 +446,7 @@ for file in showChoices(splitted):
  		print(nameFile + ".txt n'a pas pu être convertie !")
  		print(e)
 
-os.system("rm -f *.html")
+os.system("rm -f *.html") if len([o for o in os.listdir('.') if o.endswith('.html')]) > 0 else None
 
 print("#####################################")
 print("####### Conversion réussite ! #######")
